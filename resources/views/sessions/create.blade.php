@@ -1,14 +1,14 @@
 <x-layout bodyClass="bg-gray-200">
-
-        <div class="container position-sticky z-index-sticky top-0">
+        <!-- antiguo navbar -->
+        <!-- <div class="container position-sticky z-index-sticky top-0">
             <div class="row">
-                <div class="col-12">
+                <div class="col-12"> -->
                     <!-- Navbar -->
-                    <x-navbars.navs.guest signin='login' signup='register'></x-navbars.navs.guest>
+                    <!-- <x-navbars.navs.guest signin='login' signup='register'></x-navbars.navs.guest> -->
                     <!-- End Navbar -->
-                </div>
+                <!-- </div>
             </div>
-        </div>
+        </div> -->
         <main class="main-content  mt-0">
             <div class="page-header align-items-start min-vh-100"
                 style="background-image: url('https://images.unsplash.com/photo-1497294815431-9365093b7331?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1950&q=80');">
@@ -25,7 +25,8 @@
                                                 <span class="font-weight-normal">Email:</span> admin@material.com
                                                 <br>
                                                 <span class="font-weight-normal">Password:</span> secret</h6>
-                                            <div class="col-2 text-center ms-auto">
+                                           <!-- iconos para redes sociales -->
+                                                <!-- <div class="col-2 text-center ms-auto">
                                                 <a class="btn btn-link px-3" href="javascript:;">
                                                     <i class="fa fa-facebook text-white text-lg"></i>
                                                 </a>
@@ -39,7 +40,7 @@
                                                 <a class="btn btn-link px-3" href="javascript:;">
                                                     <i class="fa fa-google text-white text-lg"></i>
                                                 </a>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -71,22 +72,22 @@
                                         @enderror
                                         <div class="form-check form-switch d-flex align-items-center my-3">
                                             <input class="form-check-input" type="checkbox" id="rememberMe">
-                                            <label class="form-check-label mb-0 ms-2" for="rememberMe">Remember
-                                                me</label>
+                                            <label class="form-check-label mb-0 ms-2" for="rememberMe">Recuerdame
+                                                </label>
                                         </div>
                                         <div class="text-center">
                                             <button type="submit" class="btn bg-gradient-primary w-100 my-4 mb-2">Sign
                                                 in</button>
                                         </div>
                                         <p class="mt-4 text-sm text-center">
-                                            Don't have an account?
+                                            ¿Aún no tienes cuenta?
                                             <a href="{{ route('register') }}"
                                                 class="text-primary text-gradient font-weight-bold">Sign up</a>
                                         </p>
                                         <p class="text-sm text-center">
-                                            Forgot your password? Reset your password
+                                            ¿Olvidaste tu contraña? Restablece tu contraseña
                                             <a href="{{ route('verify') }}"
-                                                class="text-primary text-gradient font-weight-bold">here</a>
+                                                class="text-primary text-gradient font-weight-bold">¡Aquí!</a>
                                         </p>
                                     </form>
                                 </div>

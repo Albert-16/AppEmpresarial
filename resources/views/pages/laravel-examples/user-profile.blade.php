@@ -24,7 +24,7 @@
                                 {{ auth()->user()->name }}
                             </h5>
                             <p class="mb-0 font-weight-normal text-sm">
-                                CEO / Co-Founder
+                                Programador Junior
                             </p>
                         </div>
                     </div>
@@ -133,7 +133,7 @@
                                         @enderror
                                 </div>
                             </div>
-                            <button type="submit" class="btn bg-gradient-dark">Submit</button>
+                            <button type="submit" class="btn bg-gradient-dark">Enviar</button>
                         </form>
 
                     </div>
