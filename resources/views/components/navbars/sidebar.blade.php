@@ -56,8 +56,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white {{ $activePage == 'billing' ? ' active bg-info' : '' }}  "
-                    href="{{ route('billing') }}">
+                <a class="nav-link text-white {{ $activePage == 'cea' ? ' active bg-info' : '' }}  "
+                    href="{{ route('cea') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">receipt_long</i>
                     </div>
@@ -83,8 +83,8 @@
                 </a>
             </li> -->
             <li class="nav-item">
-                <a class="nav-link text-white {{ $activePage == 'notifications' ? ' active bg-info' : '' }}  "
-                    href="{{ route('notifications') }}">
+                <a class="nav-link text-white {{ $activePage == 'zmedia' ? ' active bg-info' : '' }}  "
+                    href="{{ route('zmedia') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">subscriptions</i>
                     </div>

@@ -42,9 +42,9 @@ Route::post('sign-out', [SessionsController::class, 'destroy'])->middleware('aut
 Route::get('profile', [ProfileController::class, 'create'])->middleware('auth')->name('profile');
 Route::post('user-profile', [ProfileController::class, 'update'])->middleware('auth');
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('billing', function () {
-		return view('pages.billing');
-	})->name('billing');
+	Route::get('cea', function () {
+		return view('pages.cea');
+	})->name('cea');
 	Route::get('eureka', function () {
 		return view('pages.eureka');
 	})->name('eureka');
@@ -54,9 +54,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('virtual-reality', function () {
 		return view('pages.virtual-reality');
 	})->name('virtual-reality');
-	Route::get('notifications', function () {
-		return view('pages.notifications');
-	})->name('notifications');
+	Route::get('zmedia', function () {
+		return view('pages.zmedia');
+	})->name('zmedia');
 	Route::get('static-sign-in', function () {
 		return view('pages.static-sign-in');
 	})->name('static-sign-in');
