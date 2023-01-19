@@ -1,5 +1,4 @@
 @props(['activePage'])
-
 <aside
     class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3   bg-gradient-dark"
     id="sidenav-main">
@@ -7,101 +6,101 @@
         <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
             aria-hidden="true" id="iconSidenav"></i>
         <a class="navbar-brand m-0 d-flex text-wrap align-items-center" href=" {{ route('dashboard') }} ">
-            <img src="{{ asset('assets') }}/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
-            <span class="ms-2 font-weight-bold text-white">Material Dashboard 2 Laravel</span>
+            <img src="{{ asset('assets') }}/img/sanate.jpg" class="navbar-brand-img h-100" alt="main_logo">
+            <span class="ms-2 font-weight-bold text-white">Dashboard Coorporación Sanate</span>
         </a>
     </div>
     <hr class="horizontal light mt-0 mb-2">
     <div class="collapse navbar-collapse  w-auto  max-height-vh-100" id="sidenav-collapse-main">
         <ul class="navbar-nav">
             <li class="nav-item mt-3">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Laravel examples</h6>
+                <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Usuarios</h6>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white {{ $activePage == 'user-profile' ? 'active bg-gradient-primary' : '' }} "
+                <a class="nav-link text-white {{ $activePage == 'user-profile' ? 'active bg-info' : '' }} "
                     href="{{ route('user-profile') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i style="font-size: 1.2rem;" class="fas fa-user-circle ps-2 pe-2 text-center"></i>
                     </div>
-                    <span class="nav-link-text ms-1">User Profile</span>
+                    <span class="nav-link-text ms-1">Perfil de usuario</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white {{ $activePage == 'user-management' ? ' active bg-gradient-primary' : '' }} "
+                <a class="nav-link text-white {{ $activePage == 'user-management' ? ' active bg-info' : '' }} "
                     href="{{ route('user-management') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i style="font-size: 1rem;" class="fas fa-lg fa-list-ul ps-2 pe-2 text-center"></i>
                     </div>
-                    <span class="nav-link-text ms-1">User Management</span>
+                    <span class="nav-link-text ms-1">Admin de usuarios</span>
                 </a>
             </li>
             <li class="nav-item mt-3">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Pages</h6>
+                <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Empresas</h6>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white {{ $activePage == 'dashboard' ? ' active bg-gradient-primary' : '' }} "
+                <a class="nav-link text-white {{ $activePage == 'dashboard' ? ' active bg-info' : '' }} "
                     href="{{ route('dashboard') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">dashboard</i>
+                        <i class="material-icons opacity-10">record_voice_over</i>
                     </div>
-                    <span class="nav-link-text ms-1">Dashboard</span>
+                    <span class="nav-link-text ms-1">Vaca Morada</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white {{ $activePage == 'tables' ? ' active bg-gradient-primary' : '' }} "
-                    href="{{ route('tables') }}">
+                <a class="nav-link text-white {{ $activePage == 'eureka' ? ' active bg-info' : '' }} "
+                    href="{{ route('eureka') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">table_view</i>
+                        <i class="material-icons opacity-10">shopping_bag</i>
                     </div>
-                    <span class="nav-link-text ms-1">Tables</span>
+                    <span class="nav-link-text ms-1">Eureka</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white {{ $activePage == 'billing' ? ' active bg-gradient-primary' : '' }}  "
+                <a class="nav-link text-white {{ $activePage == 'billing' ? ' active bg-info' : '' }}  "
                     href="{{ route('billing') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">receipt_long</i>
                     </div>
-                    <span class="nav-link-text ms-1">Billing</span>
+                    <span class="nav-link-text ms-1">CEA Soluciones</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-white {{ $activePage == 'virtual-reality' ? ' active bg-gradient-primary' : '' }}  "
+            <!-- <li class="nav-item">
+                <a class="nav-link text-white {{ $activePage == 'virtual-reality' ? ' active bg-info' : '' }}  "
                     href="{{ route('virtual-reality') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">view_in_ar</i>
                     </div>
                     <span class="nav-link-text ms-1">Virtual Reality</span>
                 </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-white {{ $activePage == 'rtl' ? ' active bg-gradient-primary' : '' }}  "
+            </li> -->
+            <!-- <li class="nav-item">
+                <a class="nav-link text-white {{ $activePage == 'rtl' ? ' active bg-info' : '' }}  "
                     href="{{ route('rtl') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">format_textdirection_r_to_l</i>
                     </div>
                     <span class="nav-link-text ms-1">RTL</span>
                 </a>
-            </li>
+            </li> -->
             <li class="nav-item">
-                <a class="nav-link text-white {{ $activePage == 'notifications' ? ' active bg-gradient-primary' : '' }}  "
+                <a class="nav-link text-white {{ $activePage == 'notifications' ? ' active bg-info' : '' }}  "
                     href="{{ route('notifications') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">notifications</i>
+                        <i class="material-icons opacity-10">subscriptions</i>
                     </div>
-                    <span class="nav-link-text ms-1">Notifications</span>
+                    <span class="nav-link-text ms-1">Z-Media</span>
                 </a>
             </li>
             <li class="nav-item mt-3">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Account pages</h6>
+                <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Paginas de Acceso</h6>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white {{ $activePage == 'profile' ? ' active bg-gradient-primary' : '' }}  "
+                <a class="nav-link text-white {{ $activePage == 'profile' ? ' active bg-info' : '' }}  "
                     href="{{ route('profile') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">person</i>
                     </div>
-                    <span class="nav-link-text ms-1">Profile</span>
+                    <span class="nav-link-text ms-1">Perfil</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -109,7 +108,7 @@
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">login</i>
                     </div>
-                    <span class="nav-link-text ms-1">Sign In</span>
+                    <span class="nav-link-text ms-1">Salir</span>
                 </a>
             </li>
             <li class="nav-item">
@@ -117,12 +116,12 @@
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">assignment</i>
                     </div>
-                    <span class="nav-link-text ms-1">Sign Up</span>
+                    <span class="nav-link-text ms-1">Registrarse</span>
                 </a>
             </li>
         </ul>
     </div>
-    <div class="sidenav-footer position-absolute w-100 bottom-0 ">
+    <!-- <div class="sidenav-footer position-absolute w-100 bottom-0 ">
         <div class="mx-3">
             <a class="btn bg-gradient-primary w-100" href="https://www.creative-tim.com/product/material-dashboard-laravel" target="_blank">Free Download</a>
         </div>
@@ -134,5 +133,5 @@
                 href="https://www.creative-tim.com/product/material-dashboard-pro-laravel" target="_blank" type="button">Upgrade
                 to pro</a>
         </div>
-    </div>
+    </div> -->
 </aside>

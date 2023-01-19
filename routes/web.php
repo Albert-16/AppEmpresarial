@@ -45,9 +45,9 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('billing', function () {
 		return view('pages.billing');
 	})->name('billing');
-	Route::get('tables', function () {
-		return view('pages.tables');
-	})->name('tables');
+	Route::get('eureka', function () {
+		return view('pages.eureka');
+	})->name('eureka');
 	Route::get('rtl', function () {
 		return view('pages.rtl');
 	})->name('rtl');
