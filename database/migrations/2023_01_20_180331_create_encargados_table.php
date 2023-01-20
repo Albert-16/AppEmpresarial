@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('encargados', function (Blueprint $table) {
-            $table->id('id_encargado')->primary();
+            $table->id('id_encargado');
             $table->string('nombre_encargado')->notnull();
             $table->string('telefono')->notnull();
             $table->string('direccion');

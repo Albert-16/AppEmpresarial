@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('actividades_encargado', function (Blueprint $table) {
-            $table->unsignedBigInteger('id_actvidad');
+            $table->unsignedBigInteger('id_actividad');
             $table->unsignedBigInteger('id_encargado');
-            $table->foreing('id_actvidad')->references('id_actvidad')->on('actividades');
-            $table->foreing('id_encargado')->references('id_encargado')->on('encargados');
-            $table->primary(['id_actvidad','id_encargado']);
+            $table->foreign('id_actividad')->references('id_actividad')->on('actividades');
+            $table->foreign('id_encargado')->references('id_encargado')->on('encargados');
+            $table->primary(['id_actividad','id_encargado']);
             $table->timestamps();
         });
     }

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('actividades', function (Blueprint $table) {
-            $table->id('id_actividad')->primary();
+            $table->id('id_actividad');
             $table->string('nombre_actividad')->notnull();
             $table->string('descripcion')->notnull();
             $table->date('fecha_inicio')->notnull();
