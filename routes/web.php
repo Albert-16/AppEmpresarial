@@ -1,5 +1,6 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\ActividadController;
             
 
 Route::get('/', function () {return redirect('sign-in');})->middleware('guest');
@@ -31,6 +33,7 @@ Route::get('sign-in', [SessionsController::class, 'create'])->middleware('guest'
 Route::post('sign-in', [SessionsController::class, 'store'])->middleware('guest');
 Route::post('verify', [SessionsController::class, 'show'])->middleware('guest');
 Route::post('reset-password', [SessionsController::class, 'update'])->middleware('guest')->name('password.update');
+
 Route::get('verify', function () {
 	return view('sessions.password.verify');
 })->middleware('guest')->name('verify'); 
@@ -70,3 +73,12 @@ Route::group(['middleware' => 'auth'], function () {
 		return view('pages.laravel-examples.user-profile');
 	})->name('user-profile');
 });
+
+
+//Rutas para actividades 
+Route::get('actividad', [ActividadController::class, 'index'])->middleware('auth')->name('actividad.index');
+Route::get('actividad/create', [ActividadController::class, 'create'])->middleware('auth')->name('actividad.create');
+Route::post('actividad', [ActividadController::class, 'store'])->middleware('auth');
+Route::get('actividad/{id}', [ActividadController::class, 'show'])->middleware('auth')->name('actividad.show');
+Route::get('actividad/{id}/edit', [ActividadController::class, 'edit'])->middleware('auth')->name('actividad.edit');
+Route::put('actividad/{id}', [ActividadController::class, 'update'])->middleware('auth')->name('actividad.update');
