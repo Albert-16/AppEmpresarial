@@ -18,7 +18,7 @@ class ActividadController extends Controller
         //
         $actividades = Actividad::with('estado')->get();
         $estados = Estado::all();
-        return view('actividad.index', compact('actividades','estados'));
+        return view('actividad.index', compact('actividades', 'estados'));
     }
 
     /**
@@ -41,7 +41,6 @@ class ActividadController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $data = $request->validate([
             'nombre_actividad' => 'required|string',
             'descripcion' => 'required|string',
@@ -50,11 +49,14 @@ class ActividadController extends Controller
             'costo' => 'required|numeric',
             'id_estado' => 'required|exists:estados,id_estado'
         ]);
-    
-        Actividad::create($data);
-        return redirect()->route('actividad.index');
-    }
 
+        try {
+            Actividad::create($data);
+            return redirect()->route('actividad.index')->with('success', 'Actividad creada exitosamente.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Ocurrió un error al crear la actividad.');
+        }
+    }
     /**
      * Display the specified resource.
      *
@@ -65,7 +67,7 @@ class ActividadController extends Controller
     {
         //
         $actividad->load('estado');
-    return view('actividad.show', compact('actividad'));
+        return view('actividad.show', compact('actividad'));
     }
 
     /**
@@ -78,7 +80,7 @@ class ActividadController extends Controller
     {
         //
         $estados = Estado::all();
-    return view('actividad.edit', compact('actividad', 'estados'));
+        return view('actividad.edit', compact('actividad', 'estados'));
     }
 
     /**
@@ -89,11 +91,20 @@ class ActividadController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Actividad $actividad)
-    {
-        //
-        $actividad->update($request->all());
+{
+    $data = $request->validate([
+        'nombre_actividad' => 'required|string',
+        'descripcion' => 'required|string',
+        'fecha_inicio' => 'required|date',
+        'fecha_finalizacion' => 'required|date',
+        'costo' => 'required|numeric',
+        'id_estado' => 'required|exists:estados,id_estado'
+    ]);
+
+    $actividad->update($data);
     return redirect()->route('actividad.index')->with('success', 'Actividad actualizada con éxito');
-    }
+}
+
 
     /**
      * Remove the specified resource from storage.

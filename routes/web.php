@@ -78,7 +78,7 @@ Route::group(['middleware' => 'auth'], function () {
 //Rutas para actividades 
 Route::get('actividad', [ActividadController::class, 'index'])->middleware('auth')->name('actividad.index');
 Route::get('actividad/create', [ActividadController::class, 'create'])->middleware('auth')->name('actividad.create');
-Route::post('actividad', [ActividadController::class, 'store'])->middleware('auth');
+Route::post('actividad', [ActividadController::class, 'store'])->middleware('auth')->name('actividad.store');
 Route::get('actividad/{id}', [ActividadController::class, 'show'])->middleware('auth')->name('actividad.show');
-Route::get('actividad/{id}/edit', [ActividadController::class, 'edit'])->middleware('auth')->name('actividad.edit');
-Route::put('actividad/{id}', [ActividadController::class, 'update'])->middleware('auth')->name('actividad.update');
+Route::get('actividad/{actividad}/edit', [ActividadController::class, 'edit'])->middleware('auth')->name('actividad.edit');
+Route::put('actividad/{actividad}', [ActividadController::class, 'update'])->middleware('auth')->name('actividad.update');
