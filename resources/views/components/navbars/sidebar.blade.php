@@ -35,7 +35,7 @@
                 </a>
             </li>
             <li class="nav-item mt-3">
-                <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Empresas</h6>
+                <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Actividades</h6>
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white {{ $activePage == 'dashboard' ? ' active bg-info' : '' }} "
@@ -64,15 +64,6 @@
                     <span class="nav-link-text ms-1">CEA Soluciones</span>
                 </a>
             </li> 
-            <li class="nav-item">
-                <a class="nav-link text-white {{ $activePage == 'actividades' ? ' active bg-info' : '' }}  "
-                    href="{{ route('actividad.index') }}">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">receipt_long</i>
-                    </div>
-                    <span class="nav-link-text ms-1">Actvidades</span>
-                </a>
-            </li>
             <!-- <li class="nav-item">
                 <a class="nav-link text-white {{ $activePage == 'virtual-reality' ? ' active bg-info' : '' }}  "
                     href="{{ route('virtual-reality') }}">
@@ -98,6 +89,15 @@
                         <i class="material-icons opacity-10">subscriptions</i>
                     </div>
                     <span class="nav-link-text ms-1">Z-Media</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white {{ $activePage == 'actividades' ? ' active bg-info' : '' }}  "
+                    href="{{ route('actividad.index') }}">
+                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="material-icons opacity-10">receipt_long</i>
+                    </div>
+                    <span class="nav-link-text ms-1">Actvidades</span>
                 </a>
             </li>
             <li class="nav-item mt-3">

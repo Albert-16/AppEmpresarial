@@ -18,6 +18,12 @@ class Actividad extends Model
 
     public function estado()
     {
-        return $this->belongsTo(Estado::class,'id_estado','id_estado');
+        return $this->belongsTo(Estado::class, 'id_estado', 'id_estado');
+    }
+
+    //funcion para establecer la relacion de actividades y encargados usando la tabla pivote actividades_encargados.
+    public function actividadesEncargado()
+    {
+        return $this->belongsToMany(Actividad::class, 'actividades_encargado', 'id_actividad', 'id_encargado')->withTimestamps();
     }
 }

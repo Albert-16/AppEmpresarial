@@ -35,6 +35,20 @@
                                     </span>
                                     @enderror
                                 </div>
+                                {{-- Encargado --}}
+                                <div class="form-group">
+                                    <label for="id_encargado">Encargado</label>
+                                    <select name="id_encargado" class="form-control p-2 bg-light @error('id_encargado') is-invalid @enderror">
+                                        @foreach($encargados as $encargado)
+                                        <option value="{{ $encargado->id_encargado }}">{{ $encargado->nombre_encargado }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('id_encargado')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
                                 {{-- Fecha de inicio --}}
                                 <div class="form-group  mt-2">
                                     <label for="fecha_inicio">Fecha de inicio</label>
