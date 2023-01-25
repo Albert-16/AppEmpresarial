@@ -34,6 +34,36 @@
                                     </span>
                                     @enderror
                                 </div>
+                                {{-- Encargado --}}
+                                <div class="form-group">
+                                    <label for="id_encargado">Encargado</label>
+                                    <select name="id_encargado" class="form-control p-2 bg-light @error('id_encargado') is-invalid @enderror">
+                                        @foreach($encargados as $encargado)
+                                        <option value="{{ $encargado->id_encargado }}"  {{ old('id_encargado', $actividad->id_encargado) == $encargado->id_encargado ? 'selected' : '' }}>{{ $encargado->nombre_encargado }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('id_encargado')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+
+                                {{-- Empresa --}}
+                                <div class="form-group">
+                                    <label for="id_empresa">Empresa</label>
+                                    <select name="id_empresa" class="form-control p-2 bg-light @error('id_empresa') is-invalid @enderror">
+                                        @foreach($empresas as $empresa)
+                                        <option value="{{ $empresa->id_empresa }}"  {{ old('id_empresa', $actividad->id_empresa) == $empresa->id_empresa ? 'selected' : '' }}>{{ $empresa->nombre }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('id_empresa')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+
                                 {{-- Fecha de inicio --}}
                                 <div class="form-group mt-2">
                                     <label for="fecha_inicio">Fecha de inicio</label>
