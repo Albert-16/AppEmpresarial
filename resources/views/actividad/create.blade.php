@@ -49,6 +49,19 @@
                                     </span>
                                     @enderror
                                 </div>
+                                <div class="form-group">
+                                    <label for="id_empresa">Empresa</label>
+                                    <select name="id_empresa" class="form-control p-2 bg-light @error('id_empresa') is-invalid @enderror">
+                                        @foreach($empresas as $empresa)
+                                        <option value="{{ $empresa->id_empresa }}">{{ $empresa->nombre }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('id_empresa')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
                                 {{-- Fecha de inicio --}}
                                 <div class="form-group  mt-2">
                                     <label for="fecha_inicio">Fecha de inicio</label>

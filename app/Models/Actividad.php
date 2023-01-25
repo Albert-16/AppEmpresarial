@@ -26,4 +26,10 @@ class Actividad extends Model
     {
         return $this->belongsToMany(Actividad::class, 'actividades_encargado', 'id_actividad', 'id_encargado')->withTimestamps();
     }
+    //funcion para establecer la relacion de actividades y empresa usando la tabla pivote actividades_empresa.
+
+    public function actividadesEmpresa(){
+        return  $this->belongsToMany(Actividad::class,'actividades_empresa','id_actividad','id_empresa');
+
+    }
 }

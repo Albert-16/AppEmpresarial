@@ -13,8 +13,7 @@ class Encargado extends Model
         'nombre_encargado','telefono','direccion'
     ];
 
-    public function actividadesEncargado()
-{
+    public function actividadesEncargado(){
     return $this->belongsToMany(Actividad::class,'actividades_encargado','id_actividad','id_encargado');
 }
 }

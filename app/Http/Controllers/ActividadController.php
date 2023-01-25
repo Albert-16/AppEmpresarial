@@ -6,6 +6,7 @@ use App\Models\Actividad;
 use App\Models\Estado;
 use Illuminate\Http\Request;
 use App\Models\Encargado;
+use App\Models\Empresa;
 
 class ActividadController extends Controller
 {
@@ -32,7 +33,8 @@ class ActividadController extends Controller
         //
         $estados = Estado::all();
         $encargados = Encargado::all();
-        return view('actividad.create', compact('estados','encargados'));
+        $empresas = Empresa::all();
+        return view('actividad.create', compact('estados','encargados','empresas'));
     }
 
     /**
@@ -56,6 +58,7 @@ class ActividadController extends Controller
         try {
             $actividad = Actividad::create($data);
             $actividad->actividadesEncargado()->sync([$request->id_encargado]);
+            $actividad->actividadesEmpresa()->sync([$request->id_empresa]);
             return redirect()->route('actividad.index')->with('success', 'Actividad creada exitosamente.');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Ocurrió un error al crear la actividad.');
