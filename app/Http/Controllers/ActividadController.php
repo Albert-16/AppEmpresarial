@@ -18,7 +18,7 @@ class ActividadController extends Controller
     public function index()
     {
         //
-        $actividades = Actividad::with('estado','encargado','empresa')->get();
+        $actividades = Actividad::with('estado', 'encargado', 'empresa')->get();
         //dd($actividades);
         $estados = Estado::all();
         return view('actividad.index', compact('actividades', 'estados'));
@@ -35,7 +35,7 @@ class ActividadController extends Controller
         $estados = Estado::all();
         $encargados = Encargado::all();
         $empresas = Empresa::all();
-        return view('actividad.create', compact('estados','encargados','empresas'));
+        return view('actividad.create', compact('estados', 'encargados', 'empresas'));
     }
 
     /**
@@ -55,9 +55,9 @@ class ActividadController extends Controller
             'id_estado' => 'required|exists:estados,id_estado',
             'id_encargado' => 'required|exists:encargados,id_encargado',
             'id_empresa' => 'required|exists:empresas,id_empresa'
-            
+
         ]);
-        
+
         try {
             $actividad = Actividad::create($data);
             $actividad->actividadesEncargado()->sync([$request->id_encargado]);
@@ -92,7 +92,7 @@ class ActividadController extends Controller
         $estados = Estado::all();
         $encargados = Encargado::all();
         $empresas = Empresa::all();
-        return view('actividad.edit', compact('actividad', 'estados','encargados','empresas'));
+        return view('actividad.edit', compact('actividad', 'estados', 'encargados', 'empresas'));
     }
 
     /**
@@ -110,11 +110,18 @@ class ActividadController extends Controller
             'fecha_inicio' => 'required|date',
             'fecha_finalizacion' => 'required|date',
             'costo' => 'required|numeric',
-            'id_estado' => 'required|exists:estados,id_estado'
+            'id_estado' => 'required|exists:estados,id_estado',
+            'id_encargado' => 'required|exists:encargados,id_encargado',
+            'id_empresa' => 'required|exists:empresas,id_empresa',
         ]);
-
-        $actividad->update($data);
-        return redirect()->route('actividad.index')->with('success', 'Actividad actualizada con éxito');
+        try {
+            $actividad->update($data);
+            $actividad->actividadesEmpresa()->sync($request->input('id_empresa'));           
+            $actividad->actividadesEncargado()->sync($request->input('id_encargado'));           
+            return redirect()->route('actividad.index')->with('success', 'Actividad actualizada con éxito');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Ocurrió un error al crear la actividad.');
+        }
     }
 
 

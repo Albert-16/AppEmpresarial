@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('estados', function (Blueprint $table) {
             $table->id('id_estado');
-            $table->enum('descripcion', ['Completado', 'En Proceso', 'Finalizado']);
+            $table->enum('descripcion', ['Completada', 'En Proceso', 'Cancelada']);
             $table->timestamps();
         });
     }
