@@ -9,6 +9,8 @@ class Encargado extends Model
 {
     use HasFactory;
     protected $table = 'encargados';
+    protected $primaryKey = 'id_encargado';
+    public $incrementing = true;
     protected $fillable = [
         'nombre_encargado','telefono','direccion'
     ];
