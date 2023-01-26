@@ -17,6 +17,6 @@ class Estado extends Model
 
     public function actividades()
     {
-        return $this->hasMany(Actividad::class,'id_estado','id_estado');
+        return $this->hasMany(Actividad::class, 'id_estado', 'id_estado');
     }
 }

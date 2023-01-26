@@ -13,8 +13,8 @@ class Empresa extends Model
     public $incrementing = true;
     protected $fillable = ['nombre'];
 
-    public function actividadesEmpresa(){
-        return  $this->belongsToMany(Actividad::class,'actividades_empresa','id_actividad','id_empresa');
-
+    public function actividadesEmpresa()
+    {
+        return  $this->belongsToMany(Actividad::class, 'actividades_empresa', 'id_actividad', 'id_empresa');
     }
 }

@@ -21,10 +21,13 @@ return new class extends Migration
             $table->date('fecha_finalizacion')->notnull();
             $table->double('costo', 10, 3)->notnull();
             $table->unsignedBigInteger('id_estado');
+            $table->unsignedBigInteger('id_empresa');
+            $table->unsignedBigInteger('id_encargado');
             $table->foreign('id_estado')->references('id_estado')->on('estados');
+            $table->foreign('id_empresa')->references('id_empresa')->on('empresas');
+            $table->foreign('id_encargado')->references('id_encargado')->on('encargados');
             $table->timestamps();
         });
-
     }
 
     /**

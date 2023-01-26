@@ -10,8 +10,8 @@
                 <div class="col-12">
                     <div class="card my-4">
                         <div class="card-header">
-                        <h4>Listado de Actividades</h4>
-                    </div>
+                            <h4>Listado de Actividades</h4>
+                        </div>
                         <!-- <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
                                 <h6 class="text-white mx-3"><strong> Add, Edit, Delete features are not
@@ -37,6 +37,10 @@
                                                 Nombre</th>
                                             <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                                 Descripción</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                Encargado</th>
+                                            <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                Empresa</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Fecha de inicio</th>
                                             <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -75,6 +79,21 @@
                                                     <h6 class="mb-0 text-sm">{{$actividad->descripcion}}</h6>
                                                 </div>
                                             </td>
+                                            <td class="text-wrap">
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    <h6 class="mb-0 text-sm">
+                                                       {{$actividad->encargado->nombre_encargado}}
+                                                    </h6>
+                                                </div>
+                                            </td>
+                                            <td class="text-wrap">
+                                                <div class="d-flex flex-column justify-content-center">
+                                                    
+                                                    <h6 class="mb-0 text-sm">
+                                                    {{$actividad->empresa->nombre}}
+                                                    </h6>
+                                                </div>
+                                            </td>
                                             <td class="align-middle text-center text-sm">
                                                 <p class="text-xs text-secondary mb-0">{{$actividad->fecha_inicio}}
                                                 </p>
@@ -88,7 +107,7 @@
 
                                             <td class="align-middle text-center">
                                                 <div class="form-group">
-                                                    <select class="form-control" id="estado" name="estado">
+                                                    <select class="form-control" id="estado" name="estado" disabled>
                                                         @foreach($estados as $estado)
                                                         <option value="{{ $estado->id_estado }}" {{ $actividad->estado->descripcion == $estado->descripcion ? 'selected' : '' }}>{{ $estado->descripcion }}</option>
                                                         @endforeach

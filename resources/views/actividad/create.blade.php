@@ -49,6 +49,7 @@
                                     </span>
                                     @enderror
                                 </div>
+                                {{-- Empresa --}}
                                 <div class="form-group">
                                     <label for="id_empresa">Empresa</label>
                                     <select name="id_empresa" class="form-control p-2 bg-light @error('id_empresa') is-invalid @enderror">
