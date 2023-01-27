@@ -1,16 +1,16 @@
 <x-layout bodyClass="g-sidenav-show  bg-gray-200">
 
-    <x-navbars.sidebar activePage="actividades"></x-navbars.sidebar>
+    <x-navbars.sidebar activePage="encargados"></x-navbars.sidebar>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
         <!-- Navbar -->
-        <x-navbars.navs.auth titlePage="Actividades"></x-navbars.navs.auth>
+        <x-navbars.navs.auth titlePage="Encargados"></x-navbars.navs.auth>
         <!-- End Navbar -->
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-12">
                     <div class="card my-4">
                         <div class="card-header">
-                            <h4>Listado de Actividades</h4>
+                            <h4>Listado de Encargados</h4>
                         </div>
                         <!-- <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
                             <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
@@ -23,8 +23,7 @@
                             </div>
                         </div> -->
                         <div class="me-3 text-end">
-                            <a class="btn bg-gradient-dark mb-0" href="{{ route('actividad.create') }}"><i
-                                    class="material-icons text-sm">add</i>&nbsp;&nbsp;Nueva Actividad</a>
+                            <a class="btn bg-gradient-dark mb-0" href="{{ route('encargado.create')}}"><i class="material-icons text-sm">add</i>&nbsp;&nbsp;Nuevo Encargado</a>
                         </div>
                         <div class="card-body px-0 pb-2">
                             <div class="table-responsive p-0">
@@ -40,23 +39,10 @@
                                                 Nombre</th>
                                             <th
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                Descripción</th>
+                                                Telefóno</th>
                                             <th
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                Encargado</th>
-                                            <th
-                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                                Empresa</th>
-                                            <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Fecha de inicio</th>
-                                            <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Fecha de finalización</th>
-                                            <th
-                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Precio
-                                            </th>
+                                                Dirección</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Estado
@@ -69,83 +55,58 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($actividades as $actividad)
+                                        @foreach ($encargados as $encargado)
                                             <tr>
                                                 <td>
                                                     <div class="d-flex px-2 py-1">
                                                         <div class="d-flex flex-column justify-content-center">
-                                                            <p class="mb-0 text-sm">{{ $actividad->id_actividad }}</p>
+                                                            <p class="mb-0 text-sm">{{ $encargado->id_encargado }}</p>
                                                         </div>
                                                     </div>
                                                 </td>
+                                                   {{-- nombre --}}
                                                 <td>
                                                     <div class="d-flex px-2 py-1">
                                                         <div class="d-flex flex-column justify-content-center">
-                                                            <h6 class="mb-0 text-sm">{{ $actividad->nombre_actividad }}
+                                                            <h6 class="mb-0 text-sm">{{ $encargado->nombre_encargado }}
                                                             </h6>
                                                         </div>
                                                     </div>
                                                 </td>
+                                                   {{-- telefono --}}
                                                 <td class="text-wrap">
                                                     <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm">{{ $actividad->descripcion }}</h6>
+                                                        <h6 class="mb-0 text-sm">{{ $encargado->telefono }}</h6>
                                                     </div>
                                                 </td>
+                                                 {{-- direccion --}}
                                                 <td class="text-wrap">
                                                     <div class="d-flex flex-column justify-content-center">
                                                         <h6 class="mb-0 text-sm">
-                                                            {{ $actividad->encargado->nombre_encargado }}
+                                                            {{ $encargado->direccion }}
                                                         </h6>
                                                     </div>
                                                 </td>
-                                                <td class="text-wrap">
-                                                    <div class="d-flex flex-column justify-content-center">
-
-                                                        <h6 class="mb-0 text-sm">
-                                                            {{ $actividad->empresa->nombre }}
-                                                        </h6>
-                                                    </div>
-                                                </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <p class="text-xs text-secondary mb-0">
-                                                        {{ $actividad->fecha_inicio }}
-                                                    </p>
-                                                </td>
-                                                <td class="align-middle text-center">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $actividad->fecha_finalizacion }}</span>
-                                                </td>
-                                                <td class="align-middle text-center">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $actividad->costo }}</span>
-                                                </td>
-
+                                                {{-- Estadoss --}}
                                                 <td class="align-middle text-center">
                                                     <div class="form-group">
-                                                        <select class="form-control" id="estado" name="estado"
+                                                        <select class="form-control text-center" id="estado" name="estado"
                                                             disabled>
                                                             @foreach ($estados as $estado)
-                                                                <option value="{{ $estado->id_estado }}"
-                                                                    {{ $actividad->estado->descripcion == $estado->descripcion ? 'selected' : '' }}>
+                                                                <option value="{{ $estado->id_estado_encargado }}"
+                                                                    {{ $encargado->estadoEncargado->descripcion == $estado->descripcion ? 'selected' : '' }}>
                                                                     {{ $estado->descripcion }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
                                                 </td>
-
                                                 <td class="align-bottom text-center">
                                                     <a rel="tooltip" class="btn btn-success btn-link"
-                                                        href="{{ route('actividad.edit', $actividad->id_actividad) }}"
+                                                        href="{{ route('encargado.edit', $encargado->id_encargado) }}"
                                                         data-original-title="" title="">
                                                         <i class="material-icons">edit</i>
                                                         <div class="ripple-container"></div>
                                                     </a>
-
-                                                    <!-- <button type="button" class="btn btn-danger btn-link"
-                                                data-original-title="" title="">
-                                                <i class="material-icons">close</i>
-                                                <div class="ripple-container"></div>
-                                            </button> -->
                                                 </td>
                                             </tr>
                                         @endforeach

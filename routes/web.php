@@ -18,7 +18,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\ActividadController;
-            
+use App\Http\Controllers\EncargadoController;
 
 Route::get('/', function () {return redirect('sign-in');})->middleware('guest');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
@@ -77,3 +77,10 @@ Route::post('actividad', [ActividadController::class, 'store'])->middleware('aut
 Route::get('actividad/{id}', [ActividadController::class, 'show'])->middleware('auth')->name('actividad.show');
 Route::get('actividad/{actividad}/edit', [ActividadController::class, 'edit'])->middleware('auth')->name('actividad.edit');
 Route::put('actividad/{actividad}', [ActividadController::class, 'update'])->middleware('auth')->name('actividad.update');
+
+//Rutas para encargados
+Route::get('encargado', [EncargadoController::class, 'index'])->middleware('auth')->name('encargado.index');
+Route::get('encargado/create', [EncargadoController::class, 'create'])->middleware('auth')->name('encargado.create');
+Route::post('encargado', [EncargadoController::class, 'store'])->middleware('auth')->name('encargado.store');
+Route::get('encargado/{encargado}/edit', [EncargadoController::class, 'edit'])->middleware('auth')->name('encargado.edit');
+Route::put('encargado/{encargado}', [EncargadoController::class, 'update'])->middleware('auth')->name('encargado.update');
