@@ -7,6 +7,7 @@ use App\Models\Estado;
 use Illuminate\Http\Request;
 use App\Models\Encargado;
 use App\Models\Empresa;
+use App\Models\Estado_Encargado;
 
 class ActividadController extends Controller
 {
@@ -18,6 +19,7 @@ class ActividadController extends Controller
     public function index()
     {
         //
+
         $actividades = Actividad::with('estado', 'encargado', 'empresa')->get();
         //dd($actividades);
         $estados = Estado::all();
@@ -32,10 +34,12 @@ class ActividadController extends Controller
     public function create()
     {
         //
+        $estadoActivo = Estado_Encargado::where('descripcion', 'Activo')->first();
+        $encargadosActivos = Encargado::where('id_estado_encargado', $estadoActivo->id_estado_encargado)->get();
         $estados = Estado::all();
         $encargados = Encargado::all();
         $empresas = Empresa::all();
-        return view('actividad.create', compact('estados', 'encargados', 'empresas'));
+        return view('actividad.create', compact('estados', 'encargados', 'empresas', 'encargadosActivos'));
     }
 
     /**
@@ -116,8 +120,8 @@ class ActividadController extends Controller
         ]);
         try {
             $actividad->update($data);
-            $actividad->actividadesEmpresa()->sync($request->input('id_empresa'));           
-            $actividad->actividadesEncargado()->sync($request->input('id_encargado'));           
+            $actividad->actividadesEmpresa()->sync($request->input('id_empresa'));
+            $actividad->actividadesEncargado()->sync($request->input('id_encargado'));
             return redirect()->route('actividad.index')->with('success', 'Actividad actualizada con éxito');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Ocurrió un error al crear la actividad.');

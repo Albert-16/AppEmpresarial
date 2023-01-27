@@ -3,6 +3,7 @@
     <x-navbars.sidebar activePage="actividades"></x-navbars.sidebar>
     <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
         <x-navbars.navs.auth titlePage="Crear Actividad"></x-navbars.navs.auth>
+        
         <div class="container-fluid py-4">
             <div class="row justify-content-center">
                 <div class="col-md-8">
@@ -39,7 +40,7 @@
                                 <div class="form-group">
                                     <label for="id_encargado">Encargado</label>
                                     <select name="id_encargado" class="form-control p-2 bg-light @error('id_encargado') is-invalid @enderror">
-                                        @foreach($encargados as $encargado)
+                                        @foreach($encargadosActivos as $encargado)
                                         <option value="{{ $encargado->id_encargado }}">{{ $encargado->nombre_encargado }}</option>
                                         @endforeach
                                     </select>
@@ -49,6 +50,7 @@
                                     </span>
                                     @enderror
                                 </div>
+                                
                                 {{-- Empresa --}}
                                 <div class="form-group">
                                     <label for="id_empresa">Empresa</label>

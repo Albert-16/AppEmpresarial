@@ -5,6 +5,11 @@
         <!-- Navbar -->
         <x-navbars.navs.auth titlePage="Encargados"></x-navbars.navs.auth>
         <!-- End Navbar -->
+        @if (session('success'))
+            <div id="alert" class="alert alert-success text-center text-white" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
         <div class="container-fluid py-4">
             <div class="row">
                 <div class="col-12">
@@ -23,7 +28,8 @@
                             </div>
                         </div> -->
                         <div class="me-3 text-end">
-                            <a class="btn bg-gradient-dark mb-0" href="{{ route('encargado.create')}}"><i class="material-icons text-sm">add</i>&nbsp;&nbsp;Nuevo Encargado</a>
+                            <a class="btn bg-gradient-dark mb-0" href="{{ route('encargado.create') }}"><i
+                                    class="material-icons text-sm">add</i>&nbsp;&nbsp;Nuevo Encargado</a>
                         </div>
                         <div class="card-body px-0 pb-2">
                             <div class="table-responsive p-0">
@@ -64,7 +70,7 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                   {{-- nombre --}}
+                                                {{-- nombre --}}
                                                 <td>
                                                     <div class="d-flex px-2 py-1">
                                                         <div class="d-flex flex-column justify-content-center">
@@ -73,13 +79,13 @@
                                                         </div>
                                                     </div>
                                                 </td>
-                                                   {{-- telefono --}}
+                                                {{-- telefono --}}
                                                 <td class="text-wrap">
                                                     <div class="d-flex flex-column justify-content-center">
                                                         <h6 class="mb-0 text-sm">{{ $encargado->telefono }}</h6>
                                                     </div>
                                                 </td>
-                                                 {{-- direccion --}}
+                                                {{-- direccion --}}
                                                 <td class="text-wrap">
                                                     <div class="d-flex flex-column justify-content-center">
                                                         <h6 class="mb-0 text-sm">
@@ -90,8 +96,8 @@
                                                 {{-- Estadoss --}}
                                                 <td class="align-middle text-center">
                                                     <div class="form-group">
-                                                        <select class="form-control text-center" id="estado" name="estado"
-                                                            disabled>
+                                                        <select class="form-control text-center" id="estado"
+                                                            name="estado" disabled>
                                                             @foreach ($estados as $estado)
                                                                 <option value="{{ $estado->id_estado_encargado }}"
                                                                     {{ $encargado->estadoEncargado->descripcion == $estado->descripcion ? 'selected' : '' }}>
