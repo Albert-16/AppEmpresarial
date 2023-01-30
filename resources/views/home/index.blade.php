@@ -10,12 +10,12 @@
                     <div class="card">
                         <div class="card-header p-3 pt-2">
                             <div
-                                class="icon icon-lg icon-shape bg-gradient-success shadow-success text-center border-radius-xl mt-n4 position-absolute">
+                                class="icon icon-lg icon-shape bg-gradient-info shadow-success text-center border-radius-xl mt-n4 position-absolute">
                                 <i class="material-icons opacity-10">check</i>
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">Total de Actividades</p>
-                                <h4 class="mb-0">{{$totalActividades}}</h4>
+                                <h6 class="mb-0">{{$totalActividades}}</h6>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
@@ -30,12 +30,12 @@
                     <div class="card">
                         <div class="card-header p-3 pt-2">
                             <div
-                                class="icon icon-lg icon-shape bg-gradient-success shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+                                class="icon icon-lg icon-shape bg-gradient-info shadow-dark text-center border-radius-xl mt-n4 position-absolute">
                                 <i class="material-icons opacity-10">check_circle</i>
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">Actividades Completadas</p>
-                                <h4 class="mb-0">{{ $actividadesCompletadas }}</h4>
+                                <h6 class="mb-0">{{ $actividadesCompletadas }}</h6>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
@@ -49,12 +49,12 @@
                     <div class="card">
                         <div class="card-header p-3 pt-2">
                             <div
-                                class="icon icon-lg icon-shape bg-gradient-success shadow-dark text-center border-radius-xl mt-n4 position-absolute">
+                                class="icon icon-lg icon-shape bg-gradient-warning shadow-dark text-center border-radius-xl mt-n4 position-absolute">
                                 <i class="material-icons opacity-10">update</i>
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">Actividades en Proceso</p>
-                                <h4 class="mb-0">{{ $actividadesProceso }}</h4>
+                                <h6 class="mb-0">{{ $actividadesProceso }}</h6>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
@@ -73,7 +73,7 @@
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">Actividades Canceladas</p>
-                                <h4 class="mb-0">{{ $actividadesCanceladas }}</h4>
+                                <h6 class="mb-0">{{ $actividadesCanceladas }}</h6>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
@@ -93,7 +93,7 @@
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">Total de Encargados</p>
-                                <h4 class="mb-0">{{$totalEncargados}}</h4>
+                                <h6 class="mb-0">{{$totalEncargados}}</h6>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
@@ -104,16 +104,54 @@
                     </div>
                 </div>
                 
-                <div class="col-xl-3 col-sm-6">
+                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                     <div class="card">
                         <div class="card-header p-3 pt-2">
                             <div
-                                class="icon icon-lg icon-shape bg-gradient-info shadow-info text-center border-radius-xl mt-n4 position-absolute">
-                                <i class="material-icons opacity-10">weekend</i>
+                                class="icon icon-lg icon-shape bg-gradient-success shadow-info text-center border-radius-xl mt-n4 position-absolute">
+                                <i class="material-icons opacity-10">payments</i>
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">Ganancias Netas</p>
-                                <h4 class="mb-0">{{$datosGanancias['moneda']}} {{$datosGanancias['gananciasFormateadas']}}</h4>
+                                <h6 class="mb-0">{{$datosGanancias['moneda']}} {{$datosGanancias['gananciasFormateadas']}}</h6>
+                            </div>
+                        </div>
+                        <hr class="dark horizontal my-0">
+                        <div class="card-footer p-3">
+                            <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5% </span>than
+                                yesterday</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                    <div class="card">
+                        <div class="card-header p-3 pt-2">
+                            <div
+                                class="icon icon-lg icon-shape bg-gradient-success hadow-info text-center border-radius-xl mt-n4 position-absolute">
+                                <i class="material-icons opacity-10">price_check</i>
+                            </div>
+                            <div class="text-end pt-1">
+                                <p class="text-sm mb-0 text-capitalize">Mejor Actividad</p>
+                                <h6 class="mb-0">{{$actividadMayorIngreso[0]->nombre_actividad}}: L {{number_format($actividadMayorIngreso[0]->costo, 2)}}</h6>
+                            </div>
+                        </div>
+                        <hr class="dark horizontal my-0">
+                        <div class="card-footer p-3">
+                            <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5% </span>than
+                                yesterday</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                    <div class="card">
+                        <div class="card-header p-3 pt-2">
+                            <div
+                                class="icon icon-lg icon-shape bg-gradient-success shadow-info text-center border-radius-xl mt-n4 position-absolute">
+                                <i class="material-icons opacity-10">calendar_month</i>
+                            </div>
+                            <div class="text-end pt-1">
+                                <p class="text-sm mb-0 text-capitalize">Mejor Mes</p>
+                                <h6 class="mb-0">{{$actividadMayorIngresoMes[0]->mes}}: L {{number_format($actividadMayorIngresoMes[0]->costo,2)}}</h6>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
@@ -124,6 +162,9 @@
                     </div>
                 </div>
             </div>
+           
+            </div>
+            
             <div class="row mt-4">
                 <div class="col-lg-4 col-md-6 mt-4 mb-4">
                     <div class="card z-index-2 ">

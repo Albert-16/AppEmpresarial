@@ -28,16 +28,29 @@ class HomeController extends Controller
         //traer el total de ganancias formateado
         $datosGanancias = $this->obtenerDatosGanancias();
 
+        //traer el nombre de la actividad con mayor ingreso
+        $actividadMayorIngreso = $this->mayorIngreso();
+
+        //traer el mes con mayor ingreso
+        $actividadMayorIngresoMes = $this->mayorIngresoMes();
+
         return view('home.index', compact(
             'actividadesCanceladas',
             'actividadesCompletadas',
             'actividadesProceso',
             'totalEncargados',
             'datosGanancias',
-            'totalActividades'
+            'totalActividades',
+            'actividadMayorIngreso',
+            'actividadMayorIngresoMes'
         ));
     }
-
+/**
+ * Obtener el total de actividades por estado
+ *
+ * @param integer $idEstado
+ * @return void
+ */
     private function obtenerConteoActividades(int $idEstado)
     {
         return Actividad::where('id_estado', $idEstado)->count();
@@ -47,7 +60,11 @@ class HomeController extends Controller
     {
         return Encargado::count();
     }
-
+/**
+ * Obtener el total de ganancias
+ *
+ * @return void
+ */
     private function obtenerDatosGanancias()
     {
         $ganancias = Actividad::sum('costo');
@@ -61,8 +78,42 @@ class HomeController extends Controller
         return $datosGanancias;
     }
 
+    /**
+     * Obtener el total de actividades
+     *
+     * @return void
+     */
     private function obtenerTotalActividades()
     {
         return Actividad::count();
     }
+/**
+ * Obtener el nombre de la actividad con mayor ingreso
+ *
+ * @return void
+ */
+    public function mayorIngreso()
+    {
+        $actividades = Actividad::selectRaw('nombre_actividad, SUM(costo) as costo')
+            ->groupBy('nombre_actividad')
+            ->orderBy('costo', 'desc')
+            ->limit(1)
+            ->get();
+        return $actividades;
+    }
+   /**
+    * Obtener el mes con mayor ingreso el nombre del mes en español
+    *
+    * @return void
+    */
+    public function mayorIngresoMes()
+    {
+        $actividades = Actividad::selectRaw('MONTHNAME(fecha_inicio) as mes, SUM(costo) as costo')
+            ->groupBy('mes')
+            ->orderBy('costo', 'desc')
+            ->limit(1)
+            ->get();
+        return $actividades;
+    }
+
 }
