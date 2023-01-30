@@ -37,9 +37,8 @@ class ActividadController extends Controller
         $estadoActivo = Estado_Encargado::where('descripcion', 'Activo')->first();
         $encargadosActivos = Encargado::where('id_estado_encargado', $estadoActivo->id_estado_encargado)->get();
         $estados = Estado::all();
-        $encargados = Encargado::all();
         $empresas = Empresa::all();
-        return view('actividad.create', compact('estados', 'encargados', 'empresas', 'encargadosActivos'));
+        return view('actividad.create', compact('estados','empresas', 'encargadosActivos'));
     }
 
     /**

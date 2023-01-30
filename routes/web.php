@@ -19,6 +19,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\ActividadController;
 use App\Http\Controllers\EncargadoController;
+use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {return redirect('sign-in');})->middleware('guest');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
@@ -84,3 +85,6 @@ Route::get('encargado/create', [EncargadoController::class, 'create'])->middlewa
 Route::post('encargado', [EncargadoController::class, 'store'])->middleware('auth')->name('encargado.store');
 Route::get('encargado/{encargado}/edit', [EncargadoController::class, 'edit'])->middleware('auth')->name('encargado.edit');
 Route::put('encargado/{encargado}', [EncargadoController::class, 'update'])->middleware('auth')->name('encargado.update');
+
+//Rutas para HomePage
+Route::get('home', [HomeController::class, 'index'])->middleware('auth')->name('home.index');
