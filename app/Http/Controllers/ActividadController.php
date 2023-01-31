@@ -34,8 +34,7 @@ class ActividadController extends Controller
     public function create()
     {
         //
-        $estadoActivo = Estado_Encargado::where('descripcion', 'Activo')->first();
-        $encargadosActivos = Encargado::where('id_estado_encargado', $estadoActivo->id_estado_encargado)->get();
+        $encargadosActivos = $this->encargadosActivos();
         $estados = Estado::all();
         $empresas = Empresa::all();
         return view('actividad.create', compact('estados','empresas', 'encargadosActivos'));
@@ -93,9 +92,9 @@ class ActividadController extends Controller
     {
         //
         $estados = Estado::all();
-        $encargados = Encargado::all();
+        $encargadosActivos = $this->encargadosActivos();
         $empresas = Empresa::all();
-        return view('actividad.edit', compact('actividad', 'estados', 'encargados', 'empresas'));
+        return view('actividad.edit', compact('actividad', 'estados', 'encargadosActivos', 'empresas'));
     }
 
     /**
@@ -137,5 +136,11 @@ class ActividadController extends Controller
     public function destroy(Actividad $actividad)
     {
         //
+    }
+
+    public function encargadosActivos(){
+        $estadoActivo = Estado_Encargado::where('descripcion', 'Activo')->first();
+        $encargadosActivos = Encargado::where('id_estado_encargado', $estadoActivo->id_estado_encargado)->get();
+        return $encargadosActivos;
     }
 }

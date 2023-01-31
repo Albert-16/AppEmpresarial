@@ -15,7 +15,7 @@
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">Total de Actividades</p>
-                                <h6 class="mb-0">{{$totalActividades}}</h6>
+                                <h6 class="mb-0">{{ $totalActividades }}</h6>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
@@ -93,7 +93,7 @@
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">Total de Encargados</p>
-                                <h6 class="mb-0">{{$totalEncargados}}</h6>
+                                <h6 class="mb-0">{{ $totalEncargados }}</h6>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
@@ -103,7 +103,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                     <div class="card">
                         <div class="card-header p-3 pt-2">
@@ -113,7 +113,8 @@
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">Ganancias Netas</p>
-                                <h6 class="mb-0">{{$datosGanancias['moneda']}} {{$datosGanancias['gananciasFormateadas']}}</h6>
+                                <h6 class="mb-0">{{ $datosGanancias['moneda'] }}
+                                    {{ $datosGanancias['gananciasFormateadas'] }}</h6>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">
@@ -130,12 +131,15 @@
                                 class="icon icon-lg icon-shape bg-gradient-success hadow-info text-center border-radius-xl mt-n4 position-absolute">
                                 <i class="material-icons opacity-10">price_check</i>
                             </div>
-                            <div class="text-end pt-1">
+                            <div class="text-end">
                                 <p class="text-sm mb-0 text-capitalize">Mejor Actividad</p>
-                                <h6 class="mb-0">{{$actividadMayorIngreso[0]->nombre_actividad}}: L {{number_format($actividadMayorIngreso[0]->costo, 2)}}</h6>
+                                <h6 class="mb-0 text-truncate"
+                                    style="max-width: 210px; display: inline-block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; width: 100%;"
+                                    title="{{ $actividadMayorIngreso[0]->nombre_actividad }}: L {{ number_format($actividadMayorIngreso[0]->costo, 2) }}">
+                                    {{ $actividadMayorIngreso[0]->nombre_actividad }}</h6>
                             </div>
                         </div>
-                        <hr class="dark horizontal my-0">
+                        <hr class="dark horizontal my-0 mt-n1">
                         <div class="card-footer p-3">
                             <p class="mb-0"><span class="text-success text-sm font-weight-bolder">+5% </span>than
                                 yesterday</p>
@@ -151,7 +155,8 @@
                             </div>
                             <div class="text-end pt-1">
                                 <p class="text-sm mb-0 text-capitalize">Mejor Mes</p>
-                                <h6 class="mb-0">{{$actividadMayorIngresoMes[0]->mes}}: L {{number_format($actividadMayorIngresoMes[0]->costo,2)}}</h6>
+                                <h6 class="mb-0">{{ $actividadMayorIngresoMes[0]->mes }}: L
+                                    {{ number_format($actividadMayorIngresoMes[0]->costo, 2) }}</h6>
                             </div>
                         </div>
                         <hr class="dark horizontal my-0">

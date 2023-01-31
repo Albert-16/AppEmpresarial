@@ -36,21 +36,18 @@
                                         </span>
                                     @enderror
                                 </div>
-                                {{-- Encargado --}}
-                                <div class="form-group">
+                                  {{-- Encargado --}}
+                                  <div class="form-group">
                                     <label for="id_encargado">Encargado</label>
-                                    <select name="id_encargado"
-                                        class="form-control p-2 bg-light @error('id_encargado') is-invalid @enderror">
-                                        @foreach ($encargados as $encargado)
-                                            <option value="{{ $encargado->id_encargado }}"
-                                                {{ old('id_encargado', $actividad->id_encargado) == $encargado->id_encargado ? 'selected' : '' }}>
-                                                {{ $encargado->nombre_encargado }}</option>
+                                    <select name="id_encargado" class="form-control p-2 bg-light @error('id_encargado') is-invalid @enderror">
+                                        @foreach($encargadosActivos as $encargado)
+                                        <option value="{{ $encargado->id_encargado }}">{{ $encargado->nombre_encargado }}</option>
                                         @endforeach
                                     </select>
                                     @error('id_encargado')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
 

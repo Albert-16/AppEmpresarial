@@ -57,6 +57,7 @@
     }
 
 </script>
+    {{-- // This is for the Notifications --}}
 <script>
     setTimeout(function(){
     document.getElementById("alert").style.display = "none";
