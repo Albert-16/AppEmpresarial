@@ -22,7 +22,7 @@ class ActividadController extends Controller
 
         $actividades = Actividad::with('estado', 'encargado', 'empresa')->get();
         //dd($actividades);
-        $estados = Estado::all();
+        $estados = $this->obtenerEstados();
         return view('actividad.index', compact('actividades', 'estados'));
     }
 
@@ -35,9 +35,9 @@ class ActividadController extends Controller
     {
         //
         $encargadosActivos = $this->encargadosActivos();
-        $estados = Estado::all();
-        $empresas = Empresa::all();
-        return view('actividad.create', compact('estados','empresas', 'encargadosActivos'));
+        $estados = $this->obtenerEstados();
+        $empresas = $this->obtenerEmpresas();
+        return view('actividad.create', compact('estados', 'empresas', 'encargadosActivos'));
     }
 
     /**
@@ -91,10 +91,10 @@ class ActividadController extends Controller
     public function edit(Actividad $actividad)
     {
         //
-        $estados = Estado::all();
-        $encargadosActivos = $this->encargadosActivos();
-        $empresas = Empresa::all();
-        return view('actividad.edit', compact('actividad', 'estados', 'encargadosActivos', 'empresas'));
+        $estados = $this->obtenerEstados();
+        $encargados = $this->obtenerEncargados();
+        $empresas = $this->obtenerEmpresas();
+        return view('actividad.edit', compact('actividad', 'estados', 'encargados', 'empresas'));
     }
 
     /**
@@ -137,10 +137,32 @@ class ActividadController extends Controller
     {
         //
     }
-
-    public function encargadosActivos(){
+    //Funcion para obtener los encargados activos
+    public function encargadosActivos()
+    {
         $estadoActivo = Estado_Encargado::where('descripcion', 'Activo')->first();
         $encargadosActivos = Encargado::where('id_estado_encargado', $estadoActivo->id_estado_encargado)->get();
         return $encargadosActivos;
+    }
+
+    //funcion para obtener las empresas
+    public function obtenerEmpresas()
+    {
+        $empresas = Empresa::all();
+        return $empresas;
+    }
+
+    //funcion para obtener los estados
+    public function obtenerEstados()
+    {
+        $estados = Estado::all();
+        return $estados;
+    }
+
+    //funcion para obtener los encargados
+    public function obtenerEncargados()
+    {
+        $encargados = Encargado::all();
+        return $encargados;
     }
 }
