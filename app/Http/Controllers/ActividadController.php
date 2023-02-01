@@ -8,9 +8,16 @@ use Illuminate\Http\Request;
 use App\Models\Encargado;
 use App\Models\Empresa;
 use App\Models\Estado_Encargado;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\CorreoElectronico;
+use Illuminate\Support\Facades\Log;
+
+
+
 
 class ActividadController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -64,8 +71,11 @@ class ActividadController extends Controller
             $actividad = Actividad::create($data);
             $actividad->actividadesEncargado()->sync([$request->id_encargado]);
             $actividad->actividadesEmpresa()->sync([$request->id_empresa]);
+            // enviar correo electrónico
+            Mail::to('carlosardon001@gmail.com')->send(new CorreoElectronico($data['nombre_actividad']));
             return redirect()->route('actividad.index')->with('success', 'Actividad creada exitosamente.');
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
+            Log::error($exception->getMessage());
             return redirect()->back()->with('error', 'Ocurrió un error al crear la actividad.');
         }
     }
