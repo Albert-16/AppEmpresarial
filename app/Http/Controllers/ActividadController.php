@@ -64,7 +64,6 @@ class ActividadController extends Controller
             'id_estado' => 'required|exists:estados,id_estado',
             'id_encargado' => 'required|exists:encargados,id_encargado',
             'id_empresa' => 'required|exists:empresas,id_empresa'
-
         ]);
 
         try {
@@ -72,7 +71,13 @@ class ActividadController extends Controller
             $actividad->actividadesEncargado()->sync([$request->id_encargado]);
             $actividad->actividadesEmpresa()->sync([$request->id_empresa]);
             // enviar correo electrónico
-            Mail::to('carlosardon001@gmail.com')->send(new CorreoElectronico($data['nombre_actividad']));
+            Mail::to('carlosardon001@gmail.com')->send(new CorreoElectronico(
+                $data['nombre_actividad'],
+                $data['fecha_inicio'],
+                $data['fecha_finalizacion'],
+                $data['descripcion'],
+                $data['costo']
+            ));
             return redirect()->route('actividad.index')->with('success', 'Actividad creada exitosamente.');
         } catch (\Exception $exception) {
             Log::error($exception->getMessage());
