@@ -49,7 +49,14 @@ class HomeController extends Controller
 
         //agrupar actividades por mes
         $actividadesAgrupadas = $this->agruparActividadesPorMes($actividadesMensuales);
-       
+        //--------------------------------------------------
+
+
+
+        //-----------------------Tabla----------------------  
+        $tableActividadesCompletadas = Actividad::with('estado', 'encargado', 'empresa')->where('id_estado',SELF::ESTADO_ACTIVIDAD_COMPLETADA)->get();
+        $tableActividadesProceso= Actividad::with('estado', 'encargado', 'empresa')->where('id_estado',SELF::ESTADO_ACTIVIDAD_EN_PROCESO)->get();
+        $tableActividadesCanceladas = Actividad::with('estado', 'encargado', 'empresa')->where('id_estado',SELF::ESTADO_ACTIVIDAD_CANCELADA)->get();
 
         return view('home.index', compact(
             'actividadesCanceladas',
@@ -61,7 +68,10 @@ class HomeController extends Controller
             'actividadMayorIngreso',
             'actividadMayorIngresoMes',
             'datosAgrupados',
-            'actividadesAgrupadas'
+            'actividadesAgrupadas',
+            'tableActividadesCompletadas',
+            'tableActividadesProceso',
+            'tableActividadesCanceladas'
         ));
     }
     /**
@@ -226,5 +236,56 @@ class HomeController extends Controller
             }
         }
         return $resultados;
+    }
+
+    function actividadesCompletadas()
+    {
+        $actividades = DB::table('actividades')
+            ->select(
+                'nombre_actividad',
+                'descripcion',
+                'id_encargado',
+                'id_empresa',
+                'fecha_inicio',
+                'fecha_finalizacion',
+                'costo'
+            )
+            ->where('id_estado', 3)
+            ->get();
+        return $actividades;
+    }
+
+    function actividadesPendientes()
+    {
+        $actividades = DB::table('actividades')
+            ->select(
+                'nombre_actividad',
+                'descripcion',
+                'id_encargado',
+                'id_empresa',
+                'fecha_inicio',
+                'fecha_finalizacion',
+                'costo'
+            )
+            ->where('id_estado', 4)
+            ->get();
+        return $actividades;
+    }
+
+    function actividadesCanceladas()
+    {
+        $actividades = DB::table('actividades')
+            ->select(
+                'nombre_actividad',
+                'descripcion',
+                'id_encargado',
+                'id_empresa',
+                'fecha_inicio',
+                'fecha_finalizacion',
+                'costo'
+            )
+            ->where('id_estado', 5)
+            ->get();
+        return $actividades;
     }
 }

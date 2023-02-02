@@ -111,19 +111,19 @@
                                                         </h6>
                                                     </div>
                                                 </td>
-                                                <td class="align-middle text-center text-sm">
-                                                    <p class="text-xs text-secondary mb-0">
-                                                        {{ $actividad->fecha_inicio }}
-                                                    </p>
-                                                </td>
-                                                <td class="align-middle text-center">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $actividad->fecha_finalizacion }}</span>
-                                                </td>
-                                                <td class="align-middle text-center">
-                                                    <span
-                                                        class="text-secondary text-xs font-weight-bold">{{ $actividad->costo }}</span>
-                                                </td>
+                                                    <td class="align-middle text-center text-sm">
+                                                        <p class="text-xs text-secondary mb-0">
+                                                            {{ $actividad->fecha_inicio }}
+                                                        </p>
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        <span
+                                                            class="text-secondary text-xs font-weight-bold">{{ $actividad->fecha_finalizacion }}</span>
+                                                    </td>
+                                                    <td class="align-middle text-center">
+                                                        <span
+                                                            class="text-secondary text-xs font-weight-bold">{{ $actividad->costo }}</span>
+                                                    </td>
 
                                                 <td class="align-middle text-center">
                                                     <div class="form-group">
