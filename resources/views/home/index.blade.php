@@ -364,7 +364,7 @@
                             <div class="col-lg-6 col-7">
                                 <h6>Actividades</h6>
                                 <p class="text-sm mb-0">
-                                    <i class="fa fa-check text-info" aria-hidden="true"></i>
+                                    <i class="fas fa-spinner text-warning" aria-hidden="true"></i>
                                     <span class="font-weight-bold ms-1">{{ $actividadesProceso }}</span>
                                     En Proceso
                                 </p>
@@ -476,7 +476,7 @@
                             <div class="col-lg-6 col-7">
                                 <h6>Actividades</h6>
                                 <p class="text-sm mb-0">
-                                    <i class="fa fa-cancel text-danger" aria-hidden="true"></i>
+                                    <i class="fa fa-times text-danger" aria-hidden="true"></i>
                                     <span class="font-weight-bold ms-1">{{ $actividadesCanceladas }}</span>
                                     Canceladas
                                 </p>

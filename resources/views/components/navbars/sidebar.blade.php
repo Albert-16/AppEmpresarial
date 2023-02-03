@@ -74,27 +74,9 @@
                     <span class="nav-link-text ms-1">CEA Soluciones</span>
                 </a>
             </li> 
-            <!-- <li class="nav-item">
-                <a class="nav-link text-white {{ $activePage == 'virtual-reality' ? ' active bg-info' : '' }}  "
-                    href="{{ route('virtual-reality') }}">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">view_in_ar</i>
-                    </div>
-                    <span class="nav-link-text ms-1">Virtual Reality</span>
-                </a>
-            </li> -->
-            <!-- <li class="nav-item">
-                <a class="nav-link text-white {{ $activePage == 'rtl' ? ' active bg-info' : '' }}  "
-                    href="{{ route('rtl') }}">
-                    <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
-                        <i class="material-icons opacity-10">format_textdirection_r_to_l</i>
-                    </div>
-                    <span class="nav-link-text ms-1">RTL</span>
-                </a>
-            </li> -->
             <li class="nav-item">
                 <a class="nav-link text-white {{ $activePage == 'zmedia' ? ' active bg-info' : '' }}  "
-                    href="{{ route('zmedia') }}">
+                    href="{{ route('zmedia.index') }}">
                     <div class="text-white text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="material-icons opacity-10">subscriptions</i>
                     </div>

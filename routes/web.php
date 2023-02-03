@@ -20,6 +20,7 @@ use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\ActividadController;
 use App\Http\Controllers\EncargadoController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ZmediaController;
 
 Route::get('/', function () {return redirect('sign-in');})->middleware('guest');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
@@ -47,15 +48,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('eureka', function () {
 		return view('pages.eureka');
 	})->name('eureka');
-	Route::get('rtl', function () {
-		return view('pages.rtl');
-	})->name('rtl');
-	Route::get('virtual-reality', function () {
-		return view('pages.virtual-reality');
-	})->name('virtual-reality');
-	Route::get('zmedia', function () {
-		return view('pages.zmedia');
-	})->name('zmedia');
 	Route::get('static-sign-in', function () {
 		return view('pages.static-sign-in');
 	})->name('static-sign-in');
@@ -88,3 +80,6 @@ Route::put('encargado/{encargado}', [EncargadoController::class, 'update'])->mid
 
 //Rutas para HomePage
 Route::get('home', [HomeController::class, 'index'])->middleware('auth')->name('home.index');
+
+//Rutas para Zmedia
+Route::get('zmedia', [ZmediaController::class, 'index'])->middleware('auth')->name('zmedia.index');
