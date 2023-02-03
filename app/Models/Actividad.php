@@ -13,7 +13,8 @@ class Actividad extends Model
     protected $primaryKey = 'id_actividad';
     public $incrementing = true;
     protected $fillable = [
-        'nombre_actividad', 'descripcion', 'fecha_inicio', 'fecha_finalizacion', 'costo', 'id_estado', 'id_empresa', 'id_encargado'
+        'nombre_actividad', 'descripcion', 'fecha_inicio', 'fecha_finalizacion', 'costo',
+        'egresos', 'total', 'id_estado', 'id_empresa', 'id_encargado'
     ];
     //relacion con tabla estados
     public function estado()
@@ -43,5 +44,4 @@ class Actividad extends Model
     {
         return  $this->belongsToMany(Actividad::class, 'actividades_empresa', 'id_actividad', 'id_empresa')->withTimestamps();
     }
-
 }

@@ -11,9 +11,9 @@ use Termwind\Components\Dd;
 class HomeController extends Controller
 {
     //
-    const ESTADO_ACTIVIDAD_COMPLETADA = 3;
-    const ESTADO_ACTIVIDAD_EN_PROCESO = 4;
-    const ESTADO_ACTIVIDAD_CANCELADA = 5;
+    const ESTADO_ACTIVIDAD_COMPLETADA = 1;
+    const ESTADO_ACTIVIDAD_EN_PROCESO = 2;
+    const ESTADO_ACTIVIDAD_CANCELADA = 3;
     public function index()
     {
         //traer el total de actividades
@@ -29,6 +29,9 @@ class HomeController extends Controller
 
         //traer el total de ganancias formateado
         $datosGanancias = $this->obtenerDatosGanancias();
+
+        //trael el balance de las ganancias
+        $balanceGanancias = $this->obtenerBalanceGanancias();
 
         //traer el nombre de la actividad con mayor ingreso
         $actividadMayorIngreso = $this->mayorIngreso();
@@ -64,6 +67,7 @@ class HomeController extends Controller
             'actividadesProceso',
             'totalEncargados',
             'datosGanancias',
+            'balanceGanancias',
             'totalActividades',
             'actividadMayorIngreso',
             'actividadMayorIngresoMes',
@@ -105,6 +109,19 @@ class HomeController extends Controller
             'gananciasFormateadas' => $gananciasFormateadas
         ];
         return $datosGanancias;
+    }
+
+    private function obtenerBalanceGanancias()
+    {
+        $ganancias = Actividad::sum('total');
+        $gananciasFormateadas = number_format($ganancias, 2, ".", ",");
+        $moneda = "L ";
+        $balanceGanancias = [
+            'moneda' => $moneda,
+            'ganancias' => $ganancias,
+            'gananciasFormateadas' => $gananciasFormateadas
+        ];
+        return $balanceGanancias;
     }
 
     /**
@@ -248,9 +265,11 @@ class HomeController extends Controller
                 'id_empresa',
                 'fecha_inicio',
                 'fecha_finalizacion',
-                'costo'
+                'costo',
+                'egresos',
+                'total'
             )
-            ->where('id_estado', 3)
+            ->where('id_estado', SELF::ESTADO_ACTIVIDAD_COMPLETADA)
             ->get();
         return $actividades;
     }
@@ -265,9 +284,11 @@ class HomeController extends Controller
                 'id_empresa',
                 'fecha_inicio',
                 'fecha_finalizacion',
-                'costo'
+                'costo',
+                'egresos',
+                'total'
             )
-            ->where('id_estado', 4)
+            ->where('id_estado', SELF::ESTADO_ACTIVIDAD_EN_PROCESO)
             ->get();
         return $actividades;
     }
@@ -282,9 +303,11 @@ class HomeController extends Controller
                 'id_empresa',
                 'fecha_inicio',
                 'fecha_finalizacion',
-                'costo'
+                'costo',
+                'egresos',
+                'total'
             )
-            ->where('id_estado', 5)
+            ->where('id_estado', SELF::ESTADO_ACTIVIDAD_CANCELADA)
             ->get();
         return $actividades;
     }

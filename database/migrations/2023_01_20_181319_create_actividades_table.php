@@ -20,6 +20,8 @@ return new class extends Migration
             $table->date('fecha_inicio')->notnull();
             $table->date('fecha_finalizacion')->notnull();
             $table->double('costo', 10, 3)->notnull();
+            $table->double('egresos', 10, 3)->notnull();
+            $table->double('total', 10, 3)->nullable()->default(0);
             $table->unsignedBigInteger('id_estado');
             $table->unsignedBigInteger('id_empresa');
             $table->unsignedBigInteger('id_encargado');

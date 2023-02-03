@@ -61,12 +61,14 @@ class ActividadController extends Controller
             'fecha_inicio' => 'required|date',
             'fecha_finalizacion' => 'required|date',
             'costo' => 'required|numeric',
+            'egresos' => 'required|numeric',
             'id_estado' => 'required|exists:estados,id_estado',
             'id_encargado' => 'required|exists:encargados,id_encargado',
             'id_empresa' => 'required|exists:empresas,id_empresa'
         ]);
-
         try {
+            $total = $data['costo'] - $data['egresos'];
+            $data['total'] = $total;
             $actividad = Actividad::create($data);
             $actividad->actividadesEncargado()->sync([$request->id_encargado]);
             $actividad->actividadesEmpresa()->sync([$request->id_empresa]);
@@ -127,11 +129,14 @@ class ActividadController extends Controller
             'fecha_inicio' => 'required|date',
             'fecha_finalizacion' => 'required|date',
             'costo' => 'required|numeric',
+            'egresos' => 'required|numeric',
             'id_estado' => 'required|exists:estados,id_estado',
             'id_encargado' => 'required|exists:encargados,id_encargado',
             'id_empresa' => 'required|exists:empresas,id_empresa',
         ]);
         try {
+            $total = $data['costo'] - $data['egresos'];
+            $data['total'] = $total;
             $actividad->update($data);
             $actividad->actividadesEmpresa()->sync($request->input('id_empresa'));
             $actividad->actividadesEncargado()->sync($request->input('id_encargado'));

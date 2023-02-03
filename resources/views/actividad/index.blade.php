@@ -60,7 +60,15 @@
                                                 Fecha de finalización</th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                                Precio
+                                                Ingreso
+                                            </th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Egreso
+                                            </th>
+                                            <th
+                                                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                                Total
                                             </th>
                                             <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
@@ -111,21 +119,31 @@
                                                         </h6>
                                                     </div>
                                                 </td>
-                                                    <td class="align-middle text-center text-sm">
-                                                        <p class="text-xs text-secondary mb-0">
-                                                            {{ $actividad->fecha_inicio }}
-                                                        </p>
-                                                    </td>
-                                                    <td class="align-middle text-center">
-                                                        <span
-                                                            class="text-secondary text-xs font-weight-bold">{{ $actividad->fecha_finalizacion }}</span>
-                                                    </td>
-                                                    <td class="align-middle text-center">
-                                                        <span
-                                                            class="text-secondary text-xs font-weight-bold">{{ $actividad->costo }}</span>
-                                                    </td>
+                                                <td class="align-middle text-center text-sm">
+                                                    <p class="text-xs text-secondary mb-0">
+                                                        {{ $actividad->fecha_inicio }}
+                                                    </p>
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <span class="text-secondary text-xs font-weight-bold">
+                                                        {{ $actividad->fecha_finalizacion }}</span>
+                                                </td>
 
                                                 <td class="align-middle text-center">
+                                                    <span class="text-secondary text-xs font-weight-bold">
+                                                        {{ number_format((float) $actividad->costo, 2) }}
+                                                    </span>
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <span class="text-secondary text-xs font-weight-bold">
+                                                        {{ number_format((float) $actividad->egresos, 2) }}</span>
+                                                </td>
+                                                <td class="align-middle text-center">
+                                                    <span class="text-secondary text-xs font-weight-bold">
+                                                        {{ number_format((float) $actividad->total, 2) }}</span>
+                                                </td>
+                                                <td class="align-middle text-center">
+
                                                     <div class="form-group">
                                                         <select class="form-control" id="estado" name="estado"
                                                             disabled>

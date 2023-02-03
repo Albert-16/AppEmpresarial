@@ -99,11 +99,23 @@
                                 </div>
                                 {{-- Costo --}}
                                 <div class="form-group mt-2">
-                                    <label for="costo">Costo</label>
+                                    <label for="costo">Ingreso</label>
                                     <input type="text" name="costo"
                                         class="form-control bg-light p-2 @error('costo') is-invalid @enderror"
                                         value="{{ old('costo', $actividad->costo) }}" required>
                                     @error('costo')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                 {{-- Egreso --}}
+                                 <div class="form-group mt-2">
+                                    <label for="egresos">Egreso</label>
+                                    <input type="text" name="egresos"
+                                        class="form-control bg-light p-2 @error('egresos') is-invalid @enderror"
+                                        value="{{ old('egresos', $actividad->egresos) }}" required>
+                                    @error('egresos')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

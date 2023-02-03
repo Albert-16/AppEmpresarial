@@ -6,6 +6,7 @@
         <!-- End Navbar -->
         <div class="container-fluid py-4">
             <div class="row">
+                {{-- Total de Actividades --}}
                 <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                     <div class="card">
                         <div class="card-header p-3 pt-2">
@@ -25,7 +26,7 @@
                         </div>
                     </div>
                 </div>
-
+                {{-- Actividades Completadas --}}
                 <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                     <div class="card">
                         <div class="card-header p-3 pt-2">
@@ -45,6 +46,7 @@
                         </div>
                     </div>
                 </div>
+                {{-- Actividades en Proceso --}}
                 <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                     <div class="card">
                         <div class="card-header p-3 pt-2">
@@ -64,6 +66,7 @@
                         </div>
                     </div>
                 </div>
+                {{-- Actividades Canceladas --}}
                 <div class="col-xl-3 col-sm-6 mb-xl-4 mb-4">
                     <div class="card">
                         <div class="card-header p-3 pt-2">
@@ -83,8 +86,8 @@
                         </div>
                     </div>
                 </div>
-
-                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                {{-- Encargados --}}
+                <div class="col-xl-3 col-sm-6 mb-xl-4 mb-4">
                     <div class="card">
                         <div class="card-header p-3 pt-2">
                             <div
@@ -103,7 +106,7 @@
                         </div>
                     </div>
                 </div>
-
+                {{-- Ganancias netas --}}
                 <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                     <div class="card">
                         <div class="card-header p-3 pt-2">
@@ -124,6 +127,28 @@
                         </div>
                     </div>
                 </div>
+                {{-- Balance --}}
+                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                    <div class="card">
+                        <div class="card-header p-3 pt-2">
+                            <div
+                                class="icon icon-lg icon-shape bg-gradient-success shadow-info text-center border-radius-xl mt-n4 position-absolute">
+                                <i class="material-icons opacity-10">payments</i>
+                            </div>
+                            <div class="text-end pt-1">
+                                <p class="text-sm mb-0 text-capitalize">Balance General</p>
+                                <h6 class="mb-0">{{ $balanceGanancias['moneda'] }}
+                                    {{ $balanceGanancias['gananciasFormateadas'] }}</h6>
+                            </div>
+                        </div>
+                        <hr class="dark horizontal my-0">
+                        <div class="card-footer p-3">
+                            <i class="material-icons text-sm my-auto me-1">schedule</i>
+                            <p class="mb-0 text-sm"> Actualizado Recientemente</p>
+                        </div>
+                    </div>
+                </div>
+                {{-- Mejor Actividad --}}
                 <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                     <div class="card">
                         <div class="card-header p-3 pt-2">
@@ -146,6 +171,7 @@
                         </div>
                     </div>
                 </div>
+                {{-- Mejor Mes --}}
                 <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                     <div class="card">
                         <div class="card-header p-3 pt-2">
@@ -258,7 +284,15 @@
                                             Fecha de finalización</th>
                                         <th
                                             class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Precio
+                                            Ingreso
+                                        </th>
+                                        <th
+                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Egreso
+                                        </th>
+                                        <th
+                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Total
                                         </th>
                                     </tr>
                                 </thead>
@@ -305,6 +339,14 @@
                                             <td class="align-middle text-center">
                                                 <span
                                                     class="text-secondary text-xs font-weight-bold">{{ $datosGanancias['moneda'] }}{{ number_format($actividad->costo), 2 }}</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span
+                                                    class="text-secondary text-xs font-weight-bold">{{ $datosGanancias['moneda'] }}{{ number_format($actividad->egresos), 2 }}</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span
+                                                    class="text-secondary text-xs font-weight-bold">{{ $datosGanancias['moneda'] }}{{ number_format($actividad->total), 2 }}</span>
                                             </td>
                                     @endforeach
                                 </tbody>
@@ -354,7 +396,15 @@
                                             Fecha de finalización</th>
                                         <th
                                             class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Precio
+                                            Ingreso
+                                        </th>
+                                        <th
+                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Egreso
+                                        </th>
+                                        <th
+                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Total
                                         </th>
                                     </tr>
                                 </thead>
@@ -402,6 +452,14 @@
                                                 <span
                                                     class="text-secondary text-xs font-weight-bold">{{ $datosGanancias['moneda'] }}{{ number_format($actividad->costo), 2 }}</span>
                                             </td>
+                                            <td class="align-middle text-center">
+                                                <span
+                                                    class="text-secondary text-xs font-weight-bold">{{ $datosGanancias['moneda'] }}{{ number_format($actividad->egresos), 2 }}</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span
+                                                    class="text-secondary text-xs font-weight-bold">{{ $datosGanancias['moneda'] }}{{ number_format($actividad->total), 2 }}</span>
+                                            </td>
                                     @endforeach
                                 </tbody>
                             </table>
@@ -418,7 +476,7 @@
                             <div class="col-lg-6 col-7">
                                 <h6>Actividades</h6>
                                 <p class="text-sm mb-0">
-                                    <i class="fa fa-check text-info" aria-hidden="true"></i>
+                                    <i class="fa fa-cancel text-danger" aria-hidden="true"></i>
                                     <span class="font-weight-bold ms-1">{{ $actividadesCanceladas }}</span>
                                     Canceladas
                                 </p>
@@ -450,7 +508,15 @@
                                             Fecha de finalización</th>
                                         <th
                                             class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                            Precio
+                                            Ingreso
+                                        </th>
+                                        <th
+                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Egreso
+                                        </th>
+                                        <th
+                                            class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+                                            Total
                                         </th>
                                     </tr>
                                 </thead>
@@ -497,6 +563,14 @@
                                             <td class="align-middle text-center">
                                                 <span
                                                     class="text-secondary text-xs font-weight-bold">{{ $datosGanancias['moneda'] }}{{ number_format($actividad->costo), 2 }}</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span
+                                                    class="text-secondary text-xs font-weight-bold">{{ $datosGanancias['moneda'] }}{{ number_format($actividad->egresos), 2 }}</span>
+                                            </td>
+                                            <td class="align-middle text-center">
+                                                <span
+                                                    class="text-secondary text-xs font-weight-bold">{{ $datosGanancias['moneda'] }}{{ number_format($actividad->total), 2 }}</span>
                                             </td>
                                     @endforeach
                                 </tbody>

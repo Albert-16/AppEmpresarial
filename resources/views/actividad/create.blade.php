@@ -87,9 +87,19 @@
                                 </div>
                                 {{-- Costo --}}
                                 <div class="form-group mt-2">
-                                    <label for="costo">Costo</label>
+                                    <label for="costo">Ingresos</label>
                                     <input type="number" name="costo" class="form-control p-2 bg-light @error('costo') is-invalid @enderror" value="{{ old('costo') }}" required>
                                     @error('costo')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                                 {{-- Egreso --}}
+                                 <div class="form-group mt-2">
+                                    <label for="egresos">Egresos</label>
+                                    <input type="number" name="egresos" class="form-control p-2 bg-light @error('egresos') is-invalid @enderror" value="{{ old('egresos') }}" required>
+                                    @error('egresos')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
