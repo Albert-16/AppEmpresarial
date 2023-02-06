@@ -21,6 +21,9 @@ use App\Http\Controllers\ActividadController;
 use App\Http\Controllers\EncargadoController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ZmediaController;
+use App\Http\Controllers\CeaController;
+use App\Http\Controllers\VacaController;
+use App\Http\Controllers\EurekaController;
 
 Route::get('/', function () {return redirect('sign-in');})->middleware('guest');
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
@@ -42,9 +45,6 @@ Route::post('sign-out', [SessionsController::class, 'destroy'])->middleware('aut
 Route::get('profile', [ProfileController::class, 'create'])->middleware('auth')->name('profile');
 Route::post('user-profile', [ProfileController::class, 'update'])->middleware('auth');
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('cea', function () {
-		return view('pages.cea');
-	})->name('cea');
 	Route::get('eureka', function () {
 		return view('pages.eureka');
 	})->name('eureka');
@@ -83,3 +83,6 @@ Route::get('home', [HomeController::class, 'index'])->middleware('auth')->name('
 
 //Rutas para Zmedia
 Route::get('zmedia', [ZmediaController::class, 'index'])->middleware('auth')->name('zmedia.index');
+
+//Rutas para Cea
+Route::get('cea', [CeaController::class, 'index'])->middleware('auth')->name('cea.index');

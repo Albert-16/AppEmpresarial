@@ -18,6 +18,16 @@ use Illuminate\Support\Facades\Log;
 class ActividadController extends Controller
 {
 
+        //estados de las actividades
+        const ESTADO_ACTIVIDAD_COMPLETADA = 1;
+        const ESTADO_ACTIVIDAD_EN_PROCESO = 2;
+        const ESTADO_ACTIVIDAD_CANCELADA = 3;
+        
+        //empresas
+        const EMPRESA_EUREKA = 1;
+        const EMPRESA_ZMEDIA = 2;
+        const EMPRESA_VACA = 3;
+        const EMPRESA_CEA = 4;
     /**
      * Display a listing of the resource.
      *
@@ -41,6 +51,7 @@ class ActividadController extends Controller
     public function create()
     {
         //
+        $pagina = self::EMPRESA_CEA;
         $encargadosActivos = $this->encargadosActivos();
         $estados = $this->obtenerEstados();
         $empresas = $this->obtenerEmpresas();
