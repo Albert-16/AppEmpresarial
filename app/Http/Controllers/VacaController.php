@@ -10,6 +10,8 @@ class VacaController extends Controller
     const ESTADO_ACTIVIDAD_COMPLETADA = 1;
     const ESTADO_ACTIVIDAD_EN_PROCESO = 2;
     const ESTADO_ACTIVIDAD_CANCELADA = 3;
+
+    const EMPRESA = 3;
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +20,23 @@ class VacaController extends Controller
     public function index()
     {
         //
+        //traer todas las actividades por su estado
+        $actividadesCompletadas = $this->obtenerConteoActividades(self::ESTADO_ACTIVIDAD_COMPLETADA);
+        $actividadesProceso = $this->obtenerConteoActividades(self::ESTADO_ACTIVIDAD_EN_PROCESO);
+        $actividadesCanceladas = $this->obtenerConteoActividades(self::ESTADO_ACTIVIDAD_CANCELADA);
+
+        //
+        $datosGanancias = $this->obtenerDatosGanancias();
+
+        //-------------------Tablas---------------------
+        $tableActividadesCompletadas = $this->actividadesCompletadas();
+        $tableActividadesProceso = $this->actividadesPendientes();
+        $tableActividadesCanceladas = $this->actividadesCanceladas();
         return view('vaca.index', compact(
+            'datosGanancias',
+            'tableActividadesCompletadas',
+            'tableActividadesProceso',
+            'tableActividadesCanceladas',
             'actividadesCompletadas',
             'actividadesProceso',
             'actividadesCanceladas'
@@ -90,27 +108,40 @@ class VacaController extends Controller
     {
         //
     }
-
-    //funciones 
-
     /**
-     * Funcion que retorna las actividades completadas
-     * 
+     * Funcion que retorna las ganancias
      */
-    function actividadesCompletadas()
+    private function obtenerDatosGanancias()
+    {
+        $ganancias = Actividad::sum('costo');
+        $gananciasFormateadas = number_format($ganancias, 2, ".", ",");
+        $moneda = "L ";
+        $datosGanancias = [
+            'moneda' => $moneda,
+            'ganancias' => $ganancias,
+            'gananciasFormateadas' => $gananciasFormateadas
+        ];
+        return $datosGanancias;
+    }
+    /**
+     * Funcion que retorna las actividades completadas y empresa especifica
+     */
+    private function actividadesCompletadas()
     {
         $actividades = Actividad::with('encargado', 'empresa', 'estado')
             ->where('id_estado', SELF::ESTADO_ACTIVIDAD_COMPLETADA)
+            ->where('id_empresa', SELF::EMPRESA)
             ->get();
         return $actividades;
     }
     /**
      * Funcion que retorna las actividades en proceso
      */
-    function actividadesPendientes()
+    private function actividadesPendientes()
     {
         $actividades = Actividad::with('encargado', 'empresa', 'estado')
             ->where('id_estado', SELF::ESTADO_ACTIVIDAD_EN_PROCESO)
+            ->where('id_empresa', SELF::EMPRESA)
             ->get();
         return $actividades;
     }
@@ -121,7 +152,17 @@ class VacaController extends Controller
     {
         $actividades = Actividad::with('encargado', 'empresa', 'estado')
             ->where('id_estado', SELF::ESTADO_ACTIVIDAD_CANCELADA)
+            ->where('id_empresa', SELF::EMPRESA)
             ->get();
         return $actividades;
+    }
+    /**
+     * Funcion que retorna el conteo de actividades por estado
+     */
+    private function obtenerConteoActividades(int $idEstado)
+    {
+        return Actividad::where('id_estado', $idEstado)
+            ->where('id_empresa', SELF::EMPRESA)
+            ->count();
     }
 }

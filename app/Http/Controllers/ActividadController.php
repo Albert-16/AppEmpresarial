@@ -91,7 +91,11 @@ class ActividadController extends Controller
                 $data['descripcion'],
                 $data['costo']
             ));
-            return redirect()->route('actividad.index')->with('success', 'Actividad creada exitosamente.');
+            if ($request->referrer() == route('actividad.index')) {
+                return redirect()->route('actividad.index')->with('success', 'Actividad creada exitosamente.');
+            } else {
+                return redirect()->route('cea.index')->with('success', 'Actividad creada exitosamente.');
+            }
         } catch (\Exception $exception) {
             Log::error($exception->getMessage());
             return redirect()->back()->with('error', 'Ocurrió un error al crear la actividad.');

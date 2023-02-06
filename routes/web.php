@@ -26,7 +26,6 @@ use App\Http\Controllers\VacaController;
 use App\Http\Controllers\EurekaController;
 
 Route::get('/', function () {return redirect('sign-in');})->middleware('guest');
-Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('auth')->name('dashboard');
 Route::get('sign-up', [RegisterController::class, 'create'])->middleware('guest')->name('register');
 Route::post('sign-up', [RegisterController::class, 'store'])->middleware('guest');
 Route::get('sign-in', [SessionsController::class, 'create'])->middleware('guest')->name('login');
@@ -45,9 +44,6 @@ Route::post('sign-out', [SessionsController::class, 'destroy'])->middleware('aut
 Route::get('profile', [ProfileController::class, 'create'])->middleware('auth')->name('profile');
 Route::post('user-profile', [ProfileController::class, 'update'])->middleware('auth');
 Route::group(['middleware' => 'auth'], function () {
-	Route::get('eureka', function () {
-		return view('pages.eureka');
-	})->name('eureka');
 	Route::get('static-sign-in', function () {
 		return view('pages.static-sign-in');
 	})->name('static-sign-in');
@@ -86,3 +82,9 @@ Route::get('zmedia', [ZmediaController::class, 'index'])->middleware('auth')->na
 
 //Rutas para Cea
 Route::get('cea', [CeaController::class, 'index'])->middleware('auth')->name('cea.index');
+
+//Rutas para Vaca
+Route::get('vaca', [VacaController::class, 'index'])->middleware('auth')->name('vaca.index');
+
+//Rutas para Eureka
+Route::get('eureka', [EurekaController::class, 'index'])->middleware('auth')->name('eureka.index');

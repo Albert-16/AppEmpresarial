@@ -12,10 +12,7 @@ class CeaController extends Controller
     const ESTADO_ACTIVIDAD_EN_PROCESO = 2;
     const ESTADO_ACTIVIDAD_CANCELADA = 3;
     //empresas
-    const EMPRESA_EUREKA = 1;
-    const EMPRESA_ZMEDIA = 2;
-    const EMPRESA_VACA = 3;
-    const EMPRESA_CEA = 4;
+    const EMPRESA = 4;
     /**
      * Display a listing of the resource.
      *
@@ -134,7 +131,7 @@ class CeaController extends Controller
     {
         $actividades = Actividad::with('encargado', 'empresa', 'estado')
         ->where('id_estado', SELF::ESTADO_ACTIVIDAD_COMPLETADA)
-        ->where('id_empresa', SELF::EMPRESA_CEA)
+        ->where('id_empresa', SELF::EMPRESA)
         ->get();
         return $actividades;
     }
@@ -145,7 +142,7 @@ class CeaController extends Controller
     {
         $actividades = Actividad::with('encargado', 'empresa', 'estado')
             ->where('id_estado', SELF::ESTADO_ACTIVIDAD_EN_PROCESO)
-            ->where('id_empresa', SELF::EMPRESA_CEA)
+            ->where('id_empresa', SELF::EMPRESA)
             ->get();
         return $actividades;
     }
@@ -156,7 +153,7 @@ class CeaController extends Controller
     {
         $actividades = Actividad::with('encargado', 'empresa', 'estado')
             ->where('id_estado', SELF::ESTADO_ACTIVIDAD_CANCELADA)
-            ->where('id_empresa', SELF::EMPRESA_CEA)
+            ->where('id_empresa', SELF::EMPRESA)
             ->get();
         return $actividades;
     }
@@ -166,7 +163,7 @@ class CeaController extends Controller
     private function obtenerConteoActividades(int $idEstado)
     {
         return Actividad::where('id_estado', $idEstado)
-        ->where('id_empresa', SELF::EMPRESA_CEA)
+        ->where('id_empresa', SELF::EMPRESA)
         ->count();
     }
 
