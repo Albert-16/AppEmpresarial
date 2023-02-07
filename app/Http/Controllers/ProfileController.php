@@ -24,7 +24,7 @@ class ProfileController extends Controller
         ]);
 
         auth()->user()->update($attributes);
-        return back()->withStatus('Profile successfully updated.');
+        return redirect()->back()->with('success', 'Usuario actualizado con éxito.');
     
 }
 }

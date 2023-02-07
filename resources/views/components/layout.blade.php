@@ -21,7 +21,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('assets') }}/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="{{ asset('assets') }}/img/sanate.jpg">
+    <link rel="icon" type="image/png" href="{{ asset('assets') }}/img/sanate.png">
     <title>
         Sociedad Sanate
     </title>
@@ -57,12 +57,43 @@
     }
 
 </script>
+
     {{-- // This is for the Notifications --}}
 <script>
     setTimeout(function(){
     document.getElementById("alert").style.display = "none";
  },4000 );
 </script>
+
+<!-- This is for the show and hide password -->
+<script>
+    const checkbox = document.querySelector('#rememberMe');
+    const passwordInput = document.querySelector('#password');
+  
+    checkbox.addEventListener('change', function() {
+      if (checkbox.checked) {
+        passwordInput.setAttribute('type', 'text');
+      } else {
+        passwordInput.setAttribute('type', 'password');
+      }
+    });
+  </script>
+
+{{-- This is for change checkboxs --}}
+<script>
+    const checkbox = document.querySelector('#chkchange');
+    const arrow = document.querySelector('#arrow');
+  
+    checkbox.addEventListener('change', function() {
+      if (checkbox.checked) {
+        arrow.classList.add('fa-arrow-left');
+        arrow.classList.remove('fa-arrow-right');
+      } else {
+        arrow.classList.add('fa-arrow-right');
+        arrow.classList.remove('fa-arrow-left');
+      }
+    });
+  </script>
 <!-- Github buttons -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->

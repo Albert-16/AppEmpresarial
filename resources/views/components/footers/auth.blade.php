@@ -8,7 +8,7 @@
 
                     </script>,
                     made with <i class="fa fa-heart"></i> by
-                    <a href="https://www.creative-tim.com" class="font-weight-bold" target="_blank">Carlos Ardón</a>
+                    <a href="https://github.com/Albert-16" class="font-weight-bold" target="_blank">Carlos Ardón</a>
                     practicante de la UNICAH
                 </div>
             </div>

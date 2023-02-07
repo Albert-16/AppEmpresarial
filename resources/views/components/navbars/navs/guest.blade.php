@@ -26,12 +26,12 @@
                         Dashboard
                     </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a class="nav-link me-2" href="{{ route('profile') }}">
                         <i class="fa fa-user opacity-6 text-dark me-1"></i>
                         Profile
                     </a>
-                </li>
+                </li> --}}
                 @endauth
                 <li class="nav-item">
                     <a class="nav-link me-2" href="{{ route($signup) }}">
