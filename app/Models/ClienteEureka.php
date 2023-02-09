@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class ClienteEureka extends Model
 {
     use HasFactory;
-    protected $table = 'actividades';
-    protected $primaryKey = 'id_actividad';
-    protected $fillable = ['nombre','telefono','direccion','email','fecha_nacimiento','referencia','id_estado'];
+    protected $table = 'clientes_eureka';
+    protected $primaryKey = 'identidad';
+    protected $fillable = ['nombre','telefono','direccion','email','fecha_nacimiento','referencia','id_estado_cliente'];
 
     //relacion con estados_cliente
     public function estado()
