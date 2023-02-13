@@ -10,7 +10,7 @@ class ClienteEureka extends Model
     use HasFactory;
     protected $table = 'clientes_eureka';
     protected $primaryKey = 'identidad';
-    protected $fillable = ['nombre','telefono','direccion','email','fecha_nacimiento','referencia','id_estado_cliente'];
+    protected $fillable = ['identidad','nombre','telefono','direccion','email','fecha_nacimiento','referencia','numero_talonario','id_estado_cliente'];
 
     //relacion con estados_cliente
     public function estado()

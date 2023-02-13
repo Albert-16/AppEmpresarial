@@ -24,6 +24,7 @@ use App\Http\Controllers\ZmediaController;
 use App\Http\Controllers\CeaController;
 use App\Http\Controllers\VacaController;
 use App\Http\Controllers\EurekaController;
+use App\Http\Controllers\ClienteController;
 
 Route::get('/', function () {return redirect('sign-in');})->middleware('guest');
 Route::get('sign-up', [RegisterController::class, 'create'])->middleware('guest')->name('register');
@@ -78,3 +79,14 @@ Route::get('vaca', [VacaController::class, 'index'])->middleware('auth')->name('
 
 //Rutas para Eureka
 Route::get('eureka', [EurekaController::class, 'index'])->middleware('auth')->name('eureka.index');
+
+//Rutas para clientes eureka
+Route::get('cliente/eureka',[ClienteController::class,'index'])->middleware('auth')->name('cliente.index');
+Route::get('cliente/eureka/create',[ClienteController::class,'create'])->middleware('auth')->name('cliente.create');
+Route::post('cliente/eureka',[ClienteController::class,'store'])->middleware('auth')->name('cliente.store');
+Route::get('cliente/eureka/{cliente}/edit',[ClienteController::class,'edit'])->middleware('auth')->name('cliente.edit');
+Route::put('cliente/eureka/{cliente}',[ClienteController::class,'update'])->middleware('auth')->name('cliente.update');
+
+
+
+

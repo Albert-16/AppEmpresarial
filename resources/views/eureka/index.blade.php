@@ -6,7 +6,9 @@
         <x-navbars.navs.auth titlePage="Eureka"></x-navbars.navs.auth>
         <!-- End Navbar -->
         <div class="container-lg">
-
+            <div>
+                <a class='btn bg-info opacity-7 text-white font-weight-bolder' href="{{route('cliente.index')}}">Clientes Eureka</a>
+            </div>
             {{-- Tabla Actividades Completadas --}}
             <div class="row py-4 justify-content-center">
                 <div class="card">

@@ -29,7 +29,7 @@
                                 </div>
                                 {{-- Telefono --}}
                                 <div class="form-group">
-                                    <label for="telefono">Nombre del Encargado</label>
+                                    <label for="telefono">Telefóno</label>
                                     <input type="text" name="telefono"
                                         class="form-control bg-light p-2 @error('telefono') is-invalid @enderror"
                                         value="{{ old('telefono', $encargado->telefono) }}" required>
@@ -41,7 +41,7 @@
                                 </div>
                                 {{-- Direccion  --}}
                                 <div class="form-group">
-                                    <label for="direccion">Nombre del Encargado</label>
+                                    <label for="direccion">Dirección</label>
                                     <input type="text" name="direccion"
                                         class="form-control bg-light p-2 @error('direccion') is-invalid @enderror"
                                         value="{{ old('direccion', $encargado->direccion) }}" required>

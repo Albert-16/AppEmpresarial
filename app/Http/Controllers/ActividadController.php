@@ -51,7 +51,6 @@ class ActividadController extends Controller
     public function create()
     {
         //
-        $pagina = self::EMPRESA_CEA;
         $encargadosActivos = $this->encargadosActivos();
         $estados = $this->obtenerEstados();
         $empresas = $this->obtenerEmpresas();

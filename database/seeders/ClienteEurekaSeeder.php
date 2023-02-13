@@ -24,7 +24,7 @@ class ClienteEurekaSeeder extends Seeder
             'email' => 'ejemplo@gmail.com',
             'fecha_nacimiento' => '2021-05-01',
             'referencia' => 'Carlos Ardon',
-            'numero_talonario' => '00129',
+            'numero_talonario' => '0012948',
             'id_estado_cliente' =>'1'
         ]);
     }

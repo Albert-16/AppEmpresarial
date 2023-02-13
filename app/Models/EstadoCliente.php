@@ -9,7 +9,7 @@ class EstadoCliente extends Model
 {
     use HasFactory;
     protected $table = 'estados_cliente';
-    protected $primaryKey = 'id_estado';
+    protected $primaryKey = 'id_estado_cliente';
     public $incrementing = true;
     protected $fillable = [
         'descripcion'
