@@ -28,6 +28,9 @@ class ActividadController extends Controller
         const EMPRESA_ZMEDIA = 2;
         const EMPRESA_VACA = 3;
         const EMPRESA_CEA = 4;
+
+        const CORREO_CARLOS = 'carlosardon001@gmail.com';
+        const CORREO_JUAN = 'albertdev7528@gmail.com';
     /**
      * Display a listing of the resource.
      *
@@ -66,16 +69,23 @@ class ActividadController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'nombre_actividad' => 'required|string',
-            'descripcion' => 'required|string',
+            'nombre_actividad' => 'required|string|regex:/^[a-zA-ZáéíóúÁÉÍÓÚ\s]+$/|max:50',
+            'descripcion' => 'required|string|max:255',
             'fecha_inicio' => 'required|date',
-            'fecha_finalizacion' => 'required|date',
+            'fecha_finalizacion' => 'required|date|after_or_equal:fecha_inicio',
             'costo' => 'required|numeric',
             'egresos' => 'required|numeric',
             'id_estado' => 'required|exists:estados,id_estado',
             'id_encargado' => 'required|exists:encargados,id_encargado',
             'id_empresa' => 'required|exists:empresas,id_empresa'
-        ]);
+        ], [
+            'nombre_actividad.regex' => 'El nombre de la actividad solo puede contener letras y espacios',
+            'nombre_actividad.max' => 'El nombre de la actividad no puede contener más de 50 caracteres',
+            'descripcion.max' => 'La descripción no puede contener más de 255 caracteres',
+            'costo.numeric' => 'El costo debe ser un número',
+            'egresos.numeric' => 'Los egresos deben ser un número',
+            'fecha_finalizacion.after_or_equal' => 'La fecha de finalización debe ser mayor o igual a la fecha de inicio'
+        ]	);
         try {
             $total = $data['costo'] - $data['egresos'];
             $data['total'] = $total;
@@ -92,7 +102,6 @@ class ActividadController extends Controller
             ));
                 return redirect()->route('actividad.index')->with('success', 'Actividad creada exitosamente.');
         } catch (\Exception $exception) {
-            Log::error($exception->getMessage());
             return redirect()->back()->with('error', 'Ocurrió un error al crear la actividad.');
         }
     }
@@ -134,22 +143,37 @@ class ActividadController extends Controller
     public function update(Request $request, Actividad $actividad)
     {
         $data = $request->validate([
-            'nombre_actividad' => 'required|string',
-            'descripcion' => 'required|string',
+            'nombre_actividad' => 'required|string|regex:/^[a-zA-ZáéíóúÁÉÍÓÚ\s]+$/|max:50',
+            'descripcion' => 'required|string|max:255',
             'fecha_inicio' => 'required|date',
-            'fecha_finalizacion' => 'required|date',
+            'fecha_finalizacion' => 'required|date|after_or_equal:fecha_inicio',
             'costo' => 'required|numeric',
             'egresos' => 'required|numeric',
             'id_estado' => 'required|exists:estados,id_estado',
             'id_encargado' => 'required|exists:encargados,id_encargado',
-            'id_empresa' => 'required|exists:empresas,id_empresa',
-        ]);
+            'id_empresa' => 'required|exists:empresas,id_empresa'
+        ], [
+            'nombre_actividad.regex' => 'El nombre de la actividad solo puede contener letras y espacios',
+            'nombre_actividad.max' => 'El nombre de la actividad no puede contener más de 50 caracteres',
+            'descripcion.max' => 'La descripción no puede contener más de 255 caracteres',
+            'costo.numeric' => 'El costo debe ser un número',
+            'egresos.numeric' => 'Los egresos deben ser un número',
+            'fecha_finalizacion.after_or_equal' => 'La fecha de finalización debe ser mayor o igual a la fecha de inicio'
+        ]	);
         try {
             $total = $data['costo'] - $data['egresos'];
             $data['total'] = $total;
             $actividad->update($data);
             $actividad->actividadesEmpresa()->sync($request->input('id_empresa'));
             $actividad->actividadesEncargado()->sync($request->input('id_encargado'));
+            // enviar correo electrónico
+            Mail::to('carlosardon001@gmail.com')->send(new CorreoElectronico(
+                $data['nombre_actividad'],
+                $data['fecha_inicio'],
+                $data['fecha_finalizacion'],
+                $data['descripcion'],
+                $data['costo']
+            ));
             return redirect()->route('actividad.index')->with('success', 'Actividad actualizada con éxito');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Ocurrió un error al crear la actividad.');
