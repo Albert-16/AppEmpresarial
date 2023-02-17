@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Encargado;
 use App\Models\Estado_Encargado;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class EncargadoController extends Controller
 {
@@ -18,7 +19,7 @@ class EncargadoController extends Controller
         //
         $encargados = Encargado::with('estadoEncargado')->get();
         $estados = Estado_Encargado::all();
-        return view('encargado.index', compact('encargados','estados'));
+        return view('encargado.index', compact('encargados', 'estados'));
     }
 
     /**
@@ -44,9 +45,26 @@ class EncargadoController extends Controller
         //
         $data = $request->validate([
             'nombre_encargado' => 'required|string',
-            'telefono' =>'required|string',    
+            'telefono' => 'required|string',
             'direccion' => 'required|string',
+            'email' => [
+                'required',
+                'string',
+                'email',
+                'unique:encargados,email'
+            ],
             'id_estado_encargado' => 'required|exists:estado_encargados,id_estado_encargado'
+        ], [
+            'nombre_encargado.required' => 'El nombre del encargado es requerido.',
+            'nombre_encargado.string' => 'El nombre del encargado debe ser una cadena de texto.',
+            'telefono.required' => 'El teléfono del encargado es requerido.',
+            'telefono.string' => 'El teléfono del encargado debe ser una cadena de texto.',
+            'direccion.required' => 'La dirección del encargado es requerida.',
+            'direccion.string' => 'La dirección del encargado debe ser una cadena de texto.',
+            'email.required' => 'El correo electrónico del encargado es requerido.',
+            'id_estado_encargado.required' => 'El estado del encargado es requerido.',
+            'id_estado_encargado.exists' => 'El estado del encargado no existe.',
+            'email.unique' => 'El correo electrónico del encargado ya esta registrado a otro encargado.'
         ]);
         try {
             Encargado::create($data);
@@ -78,7 +96,7 @@ class EncargadoController extends Controller
         //
         $estados = Estado_Encargado::all();
         //dd($estados);
-        return view('encargado.edit', compact('estados','encargado'));
+        return view('encargado.edit', compact('estados', 'encargado'));
     }
 
     /**
@@ -88,14 +106,31 @@ class EncargadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Encargado $encargado)
+    public function update(Request $request, Encargado $encargado)
     {
         //
         $data = $request->validate([
             'nombre_encargado' => 'required|string',
-            'telefono' => 'required|string',    
+            'telefono' => 'required|string',
             'direccion' => 'required|string',
+            'email' => [
+                'required',
+                'string',
+                'email',
+                Rule::unique('encargados')->ignore($encargado->email, 'email')
+            ],
             'id_estado_encargado' => 'required|exists:estado_encargados,id_estado_encargado'
+        ], [
+            'nombre_encargado.required' => 'El nombre del encargado es requerido.',
+            'nombre_encargado.string' => 'El nombre del encargado debe ser una cadena de texto.',
+            'telefono.required' => 'El teléfono del encargado es requerido.',
+            'telefono.string' => 'El teléfono del encargado debe ser una cadena de texto.',
+            'direccion.required' => 'La dirección del encargado es requerida.',
+            'direccion.string' => 'La dirección del encargado debe ser una cadena de texto.',
+            'email.required' => 'El correo electrónico del encargado es requerido.',
+            'id_estado_encargado.required' => 'El estado del encargado es requerido.',
+            'id_estado_encargado.exists' => 'El estado del encargado no existe.',
+            'email.unique' => 'El correo electrónico del encargado ya esta registrado a otro encargado.'
         ]);
 
         try {
@@ -125,6 +160,5 @@ class EncargadoController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Ocurrió un error al modificar el encargado.');
         }
-        
     }
 }

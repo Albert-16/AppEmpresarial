@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nombre_encargado')->notnull();
             $table->string('telefono')->notnull();
             $table->string('direccion');
+            $table->string('email')->notnull();
             $table->unsignedBigInteger('id_estado_encargado');
             $table->foreign('id_estado_encargado')->references('id_estado_encargado')->on('estado_encargados');
 

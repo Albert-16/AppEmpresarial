@@ -12,7 +12,7 @@ class Encargado extends Model
     protected $primaryKey = 'id_encargado';
     public $incrementing = true;
     protected $fillable = [
-        'nombre_encargado', 'telefono', 'direccion', 'id_estado_encargado'
+        'nombre_encargado', 'telefono', 'direccion', 'id_estado_encargado', 'email'
     ];
 
     public function actividadesEncargado()

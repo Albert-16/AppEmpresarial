@@ -10,6 +10,15 @@
                         <div class="card-header">
                             <h4>Crear un nuevo encargado</h4>
                         </div>
+                        @if($errors->any())
+                            <div class="alert alert-danger text-white">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                         <div class="card-body">
                             {{-- Formulario para crear un encargado nuevo --}}
                             <form action="{{ route('encargado.store') }}" method="POST">
@@ -51,6 +60,19 @@
                                         </span>
                                     @enderror
                                 </div>
+                                    {{-- email--}}
+                                   <div class="form-group">
+                                    <label for="email">Correo Electrónico</label>
+                                    <input type="text" name="email"
+                                        class="form-control bg-light p-2 @error('email') is-invalid @enderror"
+                                        value="{{ old('email') }}" required>
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+
                                 {{-- Estado --}}
                                 <div class="form-group  mt-2">
                                     <label for="id_estado_encargado">Estado</label>

@@ -50,6 +50,10 @@
                                                 class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                                 Dirección</th>
                                             <th
+                                                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                                Correo Electrónico</th>
+
+                                            <th
                                                 class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
                                                 Estado
                                             </th>
@@ -90,6 +94,14 @@
                                                     <div class="d-flex flex-column justify-content-center">
                                                         <h6 class="mb-0 text-sm">
                                                             {{ $encargado->direccion }}
+                                                        </h6>
+                                                    </div>
+                                                </td>
+                                                {{-- email --}}
+                                                <td class="text-wrap">
+                                                    <div class="d-flex flex-column justify-content-center">
+                                                        <h6 class="mb-0 text-sm">
+                                                            {{ $encargado->email }}
                                                         </h6>
                                                     </div>
                                                 </td>
