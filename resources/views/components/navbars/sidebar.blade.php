@@ -7,7 +7,7 @@
             aria-hidden="true" id="iconSidenav"></i>
         <a class="navbar-brand m-0 d-flex text-wrap align-items-center" href=" {{ route('home.index') }} ">
             <img src="{{ asset('assets') }}/img/sanate.png" class="navbar-brand-img h-100" alt="main_logo">
-            <span class="ms-2 font-weight-bold text-white">Coorporación Sanate</span>
+            <span class="ms-2 font-weight-bold text-white">Coorporación Zanate</span>
         </a>
     </div>
     <hr class="horizontal light mt-0 mb-2">
