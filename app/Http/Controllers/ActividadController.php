@@ -12,9 +12,6 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\CorreoElectronico;
 use Illuminate\Support\Facades\Log;
 
-
-
-
 class ActividadController extends Controller
 {
 
@@ -28,9 +25,6 @@ class ActividadController extends Controller
         const EMPRESA_ZMEDIA = 2;
         const EMPRESA_VACA = 3;
         const EMPRESA_CEA = 4;
-
-        const CORREO_CARLOS = 'carlosardon001@gmail.com';
-        const CORREO_JUAN = 'albertdev7528@gmail.com';
     /**
      * Display a listing of the resource.
      *
@@ -93,13 +87,8 @@ class ActividadController extends Controller
             $actividad->actividadesEncargado()->sync([$request->id_encargado]);
             $actividad->actividadesEmpresa()->sync([$request->id_empresa]);
             // enviar correo electrónico
-            Mail::to('carlosardon001@gmail.com')->send(new CorreoElectronico(
-                $data['nombre_actividad'],
-                $data['fecha_inicio'],
-                $data['fecha_finalizacion'],
-                $data['descripcion'],
-                $data['costo']
-            ));
+            $message = "Se ha creado una nueva actividad";
+            $this->enviarEmail($request->id_encargado,$data,$message);
                 return redirect()->route('actividad.index')->with('success', 'Actividad creada exitosamente.');
         } catch (\Exception $exception) {
             return redirect()->back()->with('error', 'Ocurrió un error al crear la actividad.');
@@ -167,13 +156,8 @@ class ActividadController extends Controller
             $actividad->actividadesEmpresa()->sync($request->input('id_empresa'));
             $actividad->actividadesEncargado()->sync($request->input('id_encargado'));
             // enviar correo electrónico
-            Mail::to('carlosardon001@gmail.com')->send(new CorreoElectronico(
-                $data['nombre_actividad'],
-                $data['fecha_inicio'],
-                $data['fecha_finalizacion'],
-                $data['descripcion'],
-                $data['costo']
-            ));
+            $message = "Se ha actualizado una actividad";
+            $this->enviarEmail($request->id_encargado,$data,$message);
             return redirect()->route('actividad.index')->with('success', 'Actividad actualizada con éxito');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Ocurrió un error al crear la actividad.');
@@ -218,5 +202,19 @@ class ActividadController extends Controller
     {
         $encargados = Encargado::all();
         return $encargados;
+    }
+
+    //funcion para enviar email
+    public function enviarEmail($id_encargado, $data, $message){
+       $encargado = Encargado::find($id_encargado);
+       Mail::to($encargado->email)->send(new CorreoElectronico(
+           $data['nombre_actividad'],
+           $data['fecha_inicio'],
+           $data['fecha_finalizacion'],
+           $data['descripcion'],
+           $data['costo'],
+           $data['mensaje'] = $message,
+
+       ));
     }
 }

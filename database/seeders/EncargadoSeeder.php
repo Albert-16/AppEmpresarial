@@ -20,28 +20,33 @@ class EncargadoSeeder extends Seeder
             'nombre_encargado' => 'Juan',
             'telefono' => '12345678',
             'direccion' => 'Col. La concepcion',
-            'id_estado_encargado' => 1
+            'id_estado_encargado' => 1,
+            'email' =>'',
         ]);
 
         Encargado::create([
             'nombre_encargado' => 'Pedro',
             'telefono' => '12345678',
             'direccion' => 'Col. La concepcion',
-            'id_estado_encargado' => 2
+            'id_estado_encargado' => 2,
+            'email' =>'',
+        
         ]);
         
         Encargado::create([
             'nombre_encargado' => 'Maria',
             'telefono' => '12345678',
             'direccion' => 'Col. La concepcion',
-            'id_estado_encargado' => 1
+            'id_estado_encargado' => 1,
+            'email' =>'',
         ]);
 
         Encargado::create([
             'nombre_encargado' => 'Jose',
             'telefono' => '12345678',
             'direccion' => 'Col. La concepcion',
-            'id_estado_encargado' => 2
+            'id_estado_encargado' => 2,
+            'email' =>'',
         ]);
     }
 }
