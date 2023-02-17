@@ -86,6 +86,6 @@
     <hr style="border: none; border-top: 1px solid #ccc; margin: 10px 0;">
     <p style="font-size: 14px; line-height: 1.5;">Este correo electrónico fue enviado desde <strong>Sociedad
             Zanate</strong>. Si tienes alguna duda o comentario, no dudes en ponerte en contacto con nosotros.</p>
-    <p style="font-size: 14px; line-height: 1.5;">Barrio el centro, calle amador</p>
+    <p style="font-size: 14px; line-height: 1.5;">Casa amador, Barrio El Centro, 1ave sur, calle el calvario</p>
 </footer>
 </html>
